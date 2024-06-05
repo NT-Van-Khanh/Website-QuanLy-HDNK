@@ -1,0 +1,77 @@
+.login-form{
+	width: 360px;
+	height:400px;
+	background-color: rgb(242, 242, 242);
+	border: 1px solid grey;
+	border-radius: 5px;
+	margin: 0 auto;
+	text-align: center;
+}
+.schoolName{
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+	color:rgb(255, 0, 0);
+	font-family: sans-serif;
+}
+.webName{
+	margin-top: 0px;
+	margin-bottom: 30px;
+	margin-left: 20px;
+	/*text-align: center;*/
+	font-family: sans-serif;
+}
+
+.tilte{
+	margin-top: 40px;
+	margin-bottom: 20px;
+	color:rgb(0, 128, 192);
+	font-family: sans-serif;
+}
+.text-name{
+	/*margin-top: 5px;*/
+	text-align: left;
+	margin-bottom: 5px;
+	margin-left: 50px;
+	color:rgb(0, 128, 192);
+	font-family: sans-serif;
+}
+
+input{
+	width: 230px;
+	height: 40px;
+	margin-bottom: 0px;
+	border-radius: 5px;
+	
+}
+.error{
+	margin-right: 65px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-align: right;
+	color:rgb(255, 0, 0);
+}
+button{
+	width: 240px;
+	height:  40px;
+	margin-bottom: 20px;
+/*	margin-left: 70px;*/
+	border-radius: 5px;
+	border:none;
+	background-color: rgb(0, 128, 192);
+	font-family: sans-serif;
+	font-size: 15px;
+	color: aliceblue;
+}
+button:hover{
+	cursor: pointer;
+	background-color:  rgb(0, 91, 136);
+	/*color:rgb(0, 128, 192);*/
+}
+.forgotPassword{
+/*	margin-left: 90px;*/
+/*	margin-top: 10px;*/
+	color:darkgray;
+	text-align: right;
+	
+}
