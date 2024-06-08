@@ -20,7 +20,8 @@ public class NotificationsEntity {
 
 		@Id
 		@GeneratedValue
-		private String idNotifi;
+		@Column(name="maTB")
+		private int idNotifi;
 		
 		@Column(name="tieuDe")
 		private String nameNotifi;
@@ -47,11 +48,11 @@ public class NotificationsEntity {
 		public NotificationsEntity() {
 		}
 
-		public String getIdNotifi() {
+		public int getIdNotifi() {
 			return idNotifi;
 		}
 
-		public void setIdNotifi(String idNotifi) {
+		public void setIdNotifi(int idNotifi) {
 			this.idNotifi = idNotifi;
 		}
 
@@ -102,6 +103,8 @@ public class NotificationsEntity {
 		public void setFlagTB(boolean flagTB) {
 			this.flagTB = flagTB;
 		}
+
+
 
 		
 }

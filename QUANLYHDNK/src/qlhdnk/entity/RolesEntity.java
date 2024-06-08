@@ -14,6 +14,7 @@ import javax.persistence.Table;
 public class RolesEntity {
 	
 	@Id
+	@Column(name="maVT")
 	private String idRole;
 	
 	@Column(name="tenVT")

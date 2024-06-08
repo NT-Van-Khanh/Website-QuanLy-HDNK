@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Table(name="LoaiHoatDong")
 public class TitlesEntity {
 	@Id
+	@Column(name="maLHD")
 	private String idTitle;
 	
 	@Column(name="tenLHD")

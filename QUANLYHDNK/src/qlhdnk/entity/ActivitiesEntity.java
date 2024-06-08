@@ -22,7 +22,8 @@ public class ActivitiesEntity {
 	
 	@Id
 	@GeneratedValue
-	private String idActivity;
+	@Column(name="maHD")
+	private int idActivity;
 	
 	@Column(name="tenHD")
 	private String nameActivity;
@@ -49,8 +50,8 @@ public class ActivitiesEntity {
 	@Column(name="ngayKT")
 	private Date endTime;
 
-	@Column(name="soLuongDK")
-	private int quantity;
+	@Column(name="soLuongDK",nullable = true)
+	private Integer quantity;
 	
 	@Column(name="diaDiem")
 	private String address;
@@ -74,11 +75,11 @@ public class ActivitiesEntity {
 	public ActivitiesEntity(){
 	}
 
-	public String getIdActivity() {
+	public int getIdActivity() {
 		return idActivity;
 	}
 
-	public void setIdActivity(String idActivity) {
+	public void setIdActivity(int idActivity) {
 		this.idActivity = idActivity;
 	}
 
@@ -130,11 +131,11 @@ public class ActivitiesEntity {
 		this.endTime = endTime;
 	}
 
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 
@@ -186,8 +187,4 @@ public class ActivitiesEntity {
 		this.registers = registers;
 	}
 
-
-
-	
-	
 }

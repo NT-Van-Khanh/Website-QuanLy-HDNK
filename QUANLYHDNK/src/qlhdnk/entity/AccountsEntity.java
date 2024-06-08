@@ -21,12 +21,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class AccountsEntity {
 	
 	@Id
-	private String userName;
+	@Column(name="maTK")
+	private String userId;
 	
 	@Column(name="tenTK")
-    private String name;
+    private String userName;
 	
-	@Column(name="password")
+	@Column(name="matKhau")
 	private String password;
 	
 	@Column(name="gioiTinh")
@@ -55,7 +56,7 @@ public class AccountsEntity {
 	@Column(name="ngaySinh")
     private Date Birthday;
 	
-	@Column(name="anh")
+	@Column(name="anhTK")
     private byte[] avatar;
 
 	@Column(name="flagTK")
@@ -74,20 +75,20 @@ public class AccountsEntity {
 	public AccountsEntity() {
 	}
 
-	public String getUserName(){
+	public String getUserId(){
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
 		return userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getPassword() {

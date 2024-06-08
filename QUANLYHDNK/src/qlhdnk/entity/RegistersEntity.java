@@ -19,7 +19,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class RegistersEntity {
 	@Id
 	@GeneratedValue
-	private String idRegister;
+	@Column(name="maDK")
+	private int idRegister;
 	
 	@ManyToOne
 	@JoinColumn(name="maHoatDong")
@@ -40,11 +41,11 @@ public class RegistersEntity {
 	public RegistersEntity() {
 	}
 
-	public String getIdRegister() {
+	public int getIdRegister() {
 		return idRegister;
 	}
 
-	public void setIdRegister(String idRegister) {
+	public void setIdRegister(int idRegister) {
 		this.idRegister = idRegister;
 	}
 
@@ -79,6 +80,8 @@ public class RegistersEntity {
 	public void setFlagDK(boolean flagDK) {
 		this.flagDK = flagDK;
 	}
+
+
 	
 	
 }
