@@ -19,8 +19,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="TaiKhoan")
 public class AccountsEntity {
-	
+
 	@Id
+<<<<<<< HEAD
 	@Column(name="maTK")
 	private String userId;
 	
@@ -28,47 +29,60 @@ public class AccountsEntity {
     private String userName;
 	
 	@Column(name="matKhau")
+=======
+	private String userName;
+
+	@Column(name="tenTK")
+    private String name;
+
+	@Column(name="password")
+>>>>>>> 2b3c2ce030e7242184a24c97c64e688454a4e0e4
 	private String password;
-	
+
 	@Column(name="gioiTinh")
     private String gender;
-	
+
 	@Column(name="email")
     private String email;
-	
+
 	@Column(name="sdt")
     private String phoneNumber;
-	
+
 	@Column(name="diaChi")
     private String address;
-	
+
 	@ManyToOne
 	@JoinColumn(name="maVaiTro")
     private RolesEntity role;//donVi 
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="HH:mm:ss dd/MM/yyyy")
 	@Column(name="ngayTao")
     private Date accountCreationDate;
-	
+
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name="ngaySinh")
     private Date Birthday;
+<<<<<<< HEAD
 	
 	@Column(name="anhTK")
+=======
+
+	@Column(name="anh")
+>>>>>>> 2b3c2ce030e7242184a24c97c64e688454a4e0e4
     private byte[] avatar;
 
 	@Column(name="flagTK")
 	private boolean flagTK;
-	
-	
+
+
 	@OneToMany(mappedBy = "posterNotifi",fetch = FetchType.EAGER)
 	private Collection<NotificationsEntity> notifications;
-	
+
 	@OneToMany(mappedBy = "registrant",fetch = FetchType.EAGER)
 	private Collection<RegistersEntity> registers;
-	
+
 	@OneToMany(mappedBy = "posterActi",fetch =FetchType.EAGER)
 	private Collection<ActivitiesEntity> activities;
 
@@ -194,6 +208,6 @@ public class AccountsEntity {
 	public void setActivities(Collection<ActivitiesEntity> activities) {
 		this.activities = activities;
 	}
-	
-	
+
+
 }
