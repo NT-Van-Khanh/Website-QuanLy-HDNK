@@ -19,55 +19,55 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="TaiKhoan")
 public class AccountsEntity {
-	
+
 	@Id
 	private String userName;
-	
+
 	@Column(name="tenTK")
     private String name;
-	
+
 	@Column(name="password")
 	private String password;
-	
+
 	@Column(name="gioiTinh")
     private String gender;
-	
+
 	@Column(name="email")
     private String email;
-	
+
 	@Column(name="sdt")
     private String phoneNumber;
-	
+
 	@Column(name="diaChi")
     private String address;
-	
+
 	@ManyToOne
 	@JoinColumn(name="maVaiTro")
     private RolesEntity role;//donVi 
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="HH:mm:ss dd/MM/yyyy")
 	@Column(name="ngayTao")
     private Date accountCreationDate;
-	
+
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name="ngaySinh")
     private Date Birthday;
-	
+
 	@Column(name="anh")
     private byte[] avatar;
 
 	@Column(name="flagTK")
 	private boolean flagTK;
-	
-	
+
+
 	@OneToMany(mappedBy = "posterNotifi",fetch = FetchType.EAGER)
 	private Collection<NotificationsEntity> notifications;
-	
+
 	@OneToMany(mappedBy = "registrant",fetch = FetchType.EAGER)
 	private Collection<RegistersEntity> registers;
-	
+
 	@OneToMany(mappedBy = "posterActi",fetch =FetchType.EAGER)
 	private Collection<ActivitiesEntity> activities;
 
@@ -193,6 +193,6 @@ public class AccountsEntity {
 	public void setActivities(Collection<ActivitiesEntity> activities) {
 		this.activities = activities;
 	}
-	
-	
+
+
 }
