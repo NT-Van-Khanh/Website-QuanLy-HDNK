@@ -1,0 +1,227 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+/*---Header----*/
+
+.header {
+	position: sticky;
+	background-color: rgb(34, 91, 149);
+	top: 0;
+    color: #fff;
+    padding: 15px 0px;
+    z-index: 999;
+}
+.header-iteam {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.header-logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+}
+.header-actions a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.header-actions a.btntk {
+    background-color: #007bff;
+}
+
+/*-----Sider-----*/
+.container-body {
+    display: flex;
+    max-width: 1200px;
+}
+
+.container-body .sider {
+    top: 65px;
+    width: 200px;
+    height: calc(100vh - 60px);
+    background: rgb(34, 91, 149);
+    position: fixed;
+}
+
+.container-body .sider ul{
+    list-style-type: none;
+    padding: 0px;
+    margin: 0;
+}
+
+.container-body .sider ul li a {
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid #515151;
+    display: block;
+    padding: 10px;
+}
+
+.container-body .sider ul li a:hover{
+    background-color: rgb(255, 255, 255);
+	color: rgb(24, 65, 105);
+}
+#menu ul li a.home{
+	background-color: #0080c0;
+}
+
+/*---Main----*/
+
+.container-body .main{
+	position: relative;
+    left: 200px;
+    margin: 15px;
+    width: calc(100% - 230px);
+}
+
+.container-item {
+    margin-top:1.5rem!important;
+    margin-bottom:1.5rem!important;
+	flex:0 0 auto;
+	width:100%
+}
+
+.container-body .main h2 {
+    color: #2c3e50; 
+    font-size: 50px;
+    text-align: center;
+    text-transform: uppercase; 
+    text-shadow: 2px 2px 4px #aaa;
+    margin: 20px;
+}
+
+/*---Tìm kiếm---*/
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;  
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    width: fit-content;  
+}
+.body-search{
+	display: flex;
+	justify-content: center;
+}
+.search-item {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+.search-input {
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+    border: none;
+    background-color: #f9f9f9;
+}
+
+.filter-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 10px;
+}
+.filter-dropdown label {
+    font-size: 16px;
+}
+#hd-filter {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+.search-button {
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.search-button:hover {
+	color: rgb(24, 65, 105);
+}
+
+/*---Các hoạt động---*/
+.dshoatdong{
+	padding-top: 20px;
+}
+.tthoatdong{
+	display: flex;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border: #004080 solid 1px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    width: 100%; 
+}
+.dangky{
+	display: flex;
+	align-items: center;
+}
+.btndangky {
+    margin-top: 13px;
+    padding: 10px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btndangky:hover {
+    background-color: #0056b3;
+}
+.btnhuydk {
+    margin-top: 13px;
+    padding: 10px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btnhuydk:hover {
+    background-color: #0056b3;
+}
+.hoatdong img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover; 
+}
+.chitiet {
+	align-content: center;
+}
+.p1, .p2 {
+  	padding-left: 60px;
+}
+
+.p2{
+	display: flex;
+	align-items: center;
+	font-size: 13px;
+	font-weight: 600;
+	gap: 30px;
+}
