@@ -1,31 +1,44 @@
-.login-form{
-	width: 360px;
-	height:400px;
-	background-color: rgb(242, 242, 242);
-	border-radius: 5px;
-	margin: 0 auto;
-	text-align: center;
+body {
+	background: url("3.jpg") no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+    margin: 0;
+    padding: 0;
 }
+
 .schoolName{
 	margin-top: 20px;
 	margin-bottom: 10px;
 	margin-left: 20px;
-	color:rgb(255, 0, 0);
+	color:rgb(247, 0, 0);
 	font-family: sans-serif;
 }
 .webName{
 	margin-top: 0px;
 	margin-bottom: 30px;
 	margin-left: 20px;
+	color:rgb(255, 255, 255);
 	/*text-align: center;*/
 	font-family: sans-serif;
 }
 
-.tilte{
+.login-form{
+	width: 360px;
+	height:400px;
+	background-color: rgb(255, 255, 255);
+	border-radius: 10px;
+	margin: auto;
+	text-align: center;
+	padding: 20px;
+}
+.login-form .tilte{
 	margin-top: 40px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
+	background-color: rgb(255, 255, 255);
 	color:rgb(0, 128, 192);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 30px;
 }
 .text-name{
 	/*margin-top: 5px;*/
@@ -47,6 +60,7 @@ input{
 	margin-right: 65px;
 	margin-bottom: 10px;
 	margin-top: 10px;
+	height: 20px;
 	text-align: right;
 	color:rgb(255, 0, 0);
 }

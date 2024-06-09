@@ -12,18 +12,16 @@ public class XMailler {
 	@Autowired
 	JavaMailSender mailer;
 	
-	public void send (String from,String to, String subject, String body) {
+	public void send (String to, String subject, String body) {
 		
 		try {
 			MimeMessage mail= mailer.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(mail,true,"utf-8");
-
-			helper.setFrom(from,from);
+			helper.setFrom("n21dccn043@student.ptithcm.edu.vn","QUAN LY HOAT DONG NGOAI KHOA");
 			helper.setTo(to);
-			helper.setReplyTo(from,from);
+			helper.setReplyTo("n21dccn043@student.ptithcm.edu.vn","QUAN LY HOAT DONG NGOAI KHOA");
 			helper.setSubject(subject);
 			helper.setText(body,true);
-			
 			mailer.send(mail);
 	
 		}catch(Exception e) {

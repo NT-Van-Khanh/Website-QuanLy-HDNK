@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,7 +22,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class AccountsEntity {
 
 	@Id
-<<<<<<< HEAD
 	@Column(name="maTK")
 	private String userId;
 	
@@ -29,14 +29,6 @@ public class AccountsEntity {
     private String userName;
 	
 	@Column(name="matKhau")
-=======
-	private String userName;
-
-	@Column(name="tenTK")
-    private String name;
-
-	@Column(name="password")
->>>>>>> 2b3c2ce030e7242184a24c97c64e688454a4e0e4
 	private String password;
 
 	@Column(name="gioiTinh")
@@ -54,23 +46,19 @@ public class AccountsEntity {
 	@ManyToOne
 	@JoinColumn(name="maVaiTro")
     private RolesEntity role;//donVi 
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="HH:mm:ss dd/MM/yyyy")
+	@DateTimeFormat(pattern="HH:mm dd/MM/yyyy")
 	@Column(name="ngayTao")
-    private Date accountCreationDate;
+    private Date createDate;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name="ngaySinh")
-    private Date Birthday;
-<<<<<<< HEAD
+    private Date birthday;
+
 	
 	@Column(name="anhTK")
-=======
-
-	@Column(name="anh")
->>>>>>> 2b3c2ce030e7242184a24c97c64e688454a4e0e4
     private byte[] avatar;
 
 	@Column(name="flagTK")
@@ -85,6 +73,17 @@ public class AccountsEntity {
 
 	@OneToMany(mappedBy = "posterActi",fetch =FetchType.EAGER)
 	private Collection<ActivitiesEntity> activities;
+	
+	@Transient
+	private String avatarBase64;
+	
+	public String getAvatarBase64() {
+		return avatarBase64;
+	}
+
+	public void setAvatarBase64(String avatarBase64) {
+		this.avatarBase64 = avatarBase64;
+	}
 
 	public AccountsEntity() {
 	}
@@ -153,20 +152,20 @@ public class AccountsEntity {
 		this.role = role;
 	}
 
-	public Date getAccountCreationDate() {
-		return accountCreationDate;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setAccountCreationDate(Date accountCreationDate) {
-		this.accountCreationDate = accountCreationDate;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public Date getBirthday() {
-		return Birthday;
+		return birthday;
 	}
 
 	public void setBirthday(Date birthday) {
-		Birthday = birthday;
+		this.birthday = birthday;
 	}
 
 	public byte[] getAvatar() {

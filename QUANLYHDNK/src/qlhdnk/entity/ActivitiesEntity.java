@@ -36,17 +36,17 @@ public class ActivitiesEntity {
 	private TitlesEntity title;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="HH:mm:ss dd/MM/yyyy")
+	@DateTimeFormat(pattern="HH:mm dd/MM/yyyy")
 	@Column(name="ngayDang")
 	private Date postTime;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="HH:mm:ss dd/MM/yyyy")
+	@DateTimeFormat(pattern="HH:mm dd/MM/yyyy")
 	@Column(name="ngayBD")
 	private Date startTime;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="HH:mm:ss dd/MM/yyyy")
+	@DateTimeFormat(pattern="HH:mm dd/MM/yyyy")
 	@Column(name="ngayKT")
 	private Date endTime;
 
