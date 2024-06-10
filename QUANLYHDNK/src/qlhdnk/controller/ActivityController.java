@@ -68,9 +68,8 @@ public class ActivityController {
 	}
 	
 	@RequestMapping("account")
-	public String getAccount(ModelMap model) {
-		List<AccountsEntity> list = accountDAO.getInfoAcount();
-		model.addAttribute("info",list);
+	public String getAccount() {
+		
 		return "activity/account";
 	}
 	@RequestMapping("login")

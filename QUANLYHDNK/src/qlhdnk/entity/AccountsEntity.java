@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -47,15 +48,16 @@ public class AccountsEntity {
 	@ManyToOne
 	@JoinColumn(name="maVaiTro")
     private RolesEntity role;//donVi 
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="HH:mm:ss dd/MM/yyyy")
+	@DateTimeFormat(pattern="HH:mm dd/MM/yyyy")
 	@Column(name="ngayTao")
-    private Date accountCreationDate;
+    private Date createDate;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name="ngaySinh")
+
     private Date Birthday;
 
 	
@@ -76,6 +78,17 @@ public class AccountsEntity {
 
 	@OneToMany(mappedBy = "posterActi",fetch =FetchType.EAGER)
 	private Collection<ActivitiesEntity> activities;
+	
+	@Transient
+	private String avatarBase64;
+	
+	public String getAvatarBase64() {
+		return avatarBase64;
+	}
+
+	public void setAvatarBase64(String avatarBase64) {
+		this.avatarBase64 = avatarBase64;
+	}
 
 	public AccountsEntity() {
 	}
@@ -144,13 +157,15 @@ public class AccountsEntity {
 		this.role = role;
 	}
 
-	public Date getAccountCreationDate() {
-		return accountCreationDate;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setAccountCreationDate(Date accountCreationDate) {
-		this.accountCreationDate = accountCreationDate;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
+
+	
 
 	public Date getBirthday() {
 		return Birthday;

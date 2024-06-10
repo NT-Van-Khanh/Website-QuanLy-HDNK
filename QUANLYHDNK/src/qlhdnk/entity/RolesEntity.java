@@ -15,10 +15,10 @@ public class RolesEntity {
 	
 	@Id
 	@Column(name="maVT")
-	private String idRole;
+	private String id;
 	
 	@Column(name="tenVT")
-	private String nameRole;
+	private String name;
 	
 	@Column(name="flagVT")
 	private boolean flagVT;
@@ -31,21 +31,31 @@ public class RolesEntity {
 	public RolesEntity() {
 	}
 
-	public String getIdRole() {
-		return idRole;
+
+
+	public String getId() {
+		return id;
 	}
 
-	public void setIdRole(String idRole) {
-		this.idRole = idRole;
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getNameRole() {
-		return nameRole;
+
+
+	public String getName() {
+		return name;
 	}
 
-	public void setNameRole(String nameRole) {
-		this.nameRole = nameRole;
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
+
+
 
 	public boolean isFlagVT() {
 		return flagVT;

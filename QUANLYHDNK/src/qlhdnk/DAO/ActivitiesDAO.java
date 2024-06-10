@@ -29,7 +29,7 @@ public class ActivitiesDAO {
 				+ "    and a.endTime >= current_date()\r\n"
 				+ "    and a.idActivity not in (\r\n"
 				+ "    select re.activityRegis from RegistersEntity re\r\n"
-				+ "        where re.registrant LIKE 'CLBA1'\r\n"
+				+ "        where re.registrant LIKE 'N21DCCN000'\r\n"
 				+ "        and re.flagDK = 0\r\n"
 				+ "    )\r\n"
 				+ "ORDER BY nameActivity ASC").list();

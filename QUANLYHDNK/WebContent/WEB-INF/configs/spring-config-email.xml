@@ -26,7 +26,7 @@
 		<property name = "host" 			value = "smtp.gmail.com"/>
 		<property name = "port" 			value = "465"/> <!-- doi tu 587 thanh 465  -->
 		<property name = "username" 		value = "n21dccn043@student.ptithcm.edu.vn"/> <!-- email người gửi  -->
-		<property name = "password" 		value = ""/><!-- mật khẩu- cẩn thận bị lộ  -->
+		<property name = "password" 		value = "ikic ffze nwbt qxpj"/><!-- mật khẩu- cẩn thận bị lộ  -->
 		<property name = "defaultEncoding" 	value = "UTF-8"/>
 		<property name = "javaMailProperties">
 			<props>
