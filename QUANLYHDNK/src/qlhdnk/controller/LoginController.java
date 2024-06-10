@@ -40,10 +40,10 @@ public class LoginController {
 		 	return "login/login";
 		 } else{
 			 model.addAttribute("message","Đăng nhập thành công!"); 
-			 if(account.getRole().getIdRole().equals("QL")){
+			 if(account.getRole().getId().equals("QL")){
 				 System.out.println("ADMIN");
 				 return "redirect:/manage/account-manage.htm";
-			 }else if(account.getRole().getIdRole().equals("ND")) {
+			 }else if(account.getRole().getId().equals("ND")) {
 				 System.out.println("ND");
 				 return "redirect:activity/activities.htm";
 			 }else {

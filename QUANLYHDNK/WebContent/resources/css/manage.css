@@ -7,41 +7,45 @@ button{
 }
 header{
 	background: rgb(34, 91, 149);
-	color: rgb(255, 255, 255);
 	height: 60px;
 	font-family: sans-serif;
 	vertical-align: middle;
 }
 header label{
-    display: inline-block;
+	display: inline-block;
     text-align: left;
     line-height: 60px;
     margin-left: 20px;
     font-size: 28px;
     font-weight: bold; 
+    
+}
+header label:hover{
+	filter: drop-shadow(1px 1px 10px rgb(255, 255, 255) );
 }
 header a{
 	text-decoration: none;
 	color: rgb(255, 255, 255);
-	float: right;
 	text-align: center; 
 	margin-right: 20px;
+	transition-duration: 0.4s;
 }
-header a:hover{
+header a:hover:not(.titleWeb){
 	background-color: rgb(255, 255, 255);
 	color: rgb(24, 65, 105);
 }
-header a#logout{
+header #logout{
+	float: right;
 	margin-top: 10px;
 	line-height: 40px;
 	margin-bottom: 10px;
 	width: 120px;	
-	transition-duration: 0.4s;
+	
 }
-header a#avatar{
+header #avatar{
+	float: right;
 	line-height: 60px;
-	width: 50px;
-	transition-duration: 0.4s;	
+	width: 50px;	
 }
 
 #menu{
@@ -90,7 +94,7 @@ header a#avatar{
 	margin-top: 2px;
 	background-color: rgb(234, 234, 234);
 	border-radius: 5px;
-	padding: 10px;
+	padding: 10px 15px;
 }
 .table-tool{
 	display: flex;
@@ -102,6 +106,7 @@ header a#avatar{
 	margin-right: 5px;
     align-items: center;
 	background-color: rgb(247, 253, 255);
+	border-radius: 10px;
 	height: 45px;
 }
 .table-tool input{
@@ -168,3 +173,58 @@ header a#avatar{
 	padding-left: 5px;
 	border: 1px solid black;
 }
+.form-info{
+	border-radius: 20px;
+	background-color: white;
+	padding: 20px;
+	font-size: 20px;
+	font-family: sans-serif;
+	
+	display: grid;
+	grid-template-columns: 30% 68%;
+	grid-column-gap: 2%;
+}
+#form-info-image{
+	background-color: rgb(255, 255, 128);
+	padding: 10px;
+}
+#form-info-content{
+	background-color: rgb(255, 0, 255);
+	padding: 10px;
+}
+
+#form-info-content input{
+	width: 230px;
+	height: 25px;
+	border-radius: 5px;
+}
+#form-info-content button{
+	width: 150px;
+	height:  30px;
+	border-radius: 5px;
+	border:none;
+	background-color: rgb(0, 128, 192);
+	font-size: 15px;
+	font-weight: bold;
+	color: rgb(255, 255, 255);
+}
+#form-info-content button:hover{
+	cursor: pointer;
+	background-color:  rgb(0, 91, 136);
+}
+.tile-of-input{
+	width: 200px;
+	background-color: rgb(0, 91, 136);
+}
+#form-info-content div{
+	margin-bottom: 10px;
+}
+#form-title{
+	margin-bottom: 20px;
+	color:rgb(255, 255, 255);
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+

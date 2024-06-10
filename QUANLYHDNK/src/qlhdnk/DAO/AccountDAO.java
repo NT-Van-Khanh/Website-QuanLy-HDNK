@@ -48,6 +48,37 @@ public class AccountDAO {
 		accounts= session.createQuery(hql).list();
 		return accounts;
 	}
+	@SuppressWarnings("unchecked")
+	public List<AccountsEntity> fillListAccount(String sortBy,String fillBy){
+		Session session = sessionFactory.getCurrentSession();
+		String hql ="FROM AccountsEntity ";
+		if(fillBy!=null &&!fillBy.equals("ALL")) {
+			hql=hql+"WHERE role.id = :fill ";
+		}
+		if(sortBy!=null) {
+			switch(sortBy) {
+			case "id":
+				hql=hql+"ORDER BY userId ";
+				break;
+			case "name":
+				hql=hql+"ORDER BY userName ";
+				break;
+			case "create-date":
+				hql=hql+"ORDER BY createDate ";
+				break;
+			default:
+				break;
+			}
+		}
+		List<AccountsEntity> accounts = new ArrayList<>();
+		Query query = session.createQuery(hql);
+		if(fillBy!=null &&!fillBy.equals("ALL")) {
+			query.setString("fill", fillBy);
+		}
+		accounts= query.list();
+		return accounts;
+	}
+	
 	
 	public boolean updateAvatar(String id, byte[] byteImage) {
 		Session session =sessionFactory.getCurrentSession();

@@ -16,7 +16,6 @@
 	 	<input type="password" name= "password">
 	 	<br>
 	 	<button name="SignIn">Đăng nhập</button>
-	 	<
 	 	<h1> có thể test giao diện ở file index.jsp </h1>
 	</div>
 	

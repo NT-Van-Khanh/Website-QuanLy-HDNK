@@ -13,7 +13,7 @@
 </head>
 <body>
 	<header>
-		<label>Hoạt động ngoại khóa</label>
+		<label><a href="manage/account-manage.htm" class="titleWeb">Hoạt động ngoại khóa</a></label>
 		<a id="avatar" href="manage/activity-manage.htm">Avatar</a>
 		<a id="logout" href="login.htm">Đăng xuất</a>
 	</header>
@@ -34,23 +34,24 @@
 				<div>
 					<input type="text" name="search" placeholder="Tìm kiếm">
 					<button class="btnSearch-form" name="btnSearch"> <i class="fa fa-search" style="font-size:18px"></i> </button>
-					<button class="btnAddAccount-form" name="btnSearch">Thêm tài khoản</button>	
+				<a href="manage/add-account.htm">
+					<button class="btnAddAccount-form" name="btnAddAccount">Thêm tài khoản</button>	
+				</a>
 				</div>	
-				<div>		
-					Lọc: <select name="fill">
-						<option value="0">Tất cả</option>
-						<option value="1">Kỹ thuật viên</option>
-						<option value="2">Người đăng</option>
-						<option value="3">Sinh viên</option>
+				<form action="manage/account-manage.htm" method ="post">
+					Lọc: <select name="fill" onchange="this.form.submit()">
+						<option value="ALL">Tất cả</option>
+						<c:forEach var="role" items="${roles}">
+							<option value="${role.id}">${role.name}</option>
+						</c:forEach>
 					</select>
-					Sắp xếp theo: <select name="sort">
-						<option value="0">Mã tài khoản</option>
-						<option value="1">Tên tài khoản</option>
-						<option value="2">Ngày tạo</option>
-						<option value="3">Mã tài khoản</option>
+					Sắp xếp theo: <select name="sort" onchange="this.form.submit()">
+						<option value="id">Mã tài khoản</option>
+						<option value="name">Tên tài khoản</option>
+						<option value="create-date">Ngày tạo</option>
+		<!-- 				<option value="3">Mã tài khoản</option> -->
 					</select>
-				</div>
-				
+				</form>
 			</div>
 			<table class="table-account">
 				<tr>
@@ -78,7 +79,7 @@
 							<td>${acc.gender}</td>
 							<td>${acc.address}</td>
 							<td>${acc.createDate}</td>
-							<td>${acc.role.getNameRole()}</td>
+							<td>${acc.role.getName()}</td>
 							<%-- <td><img src="data:image/png;base64,${acc.avatarBase64}" alt="No image"></td> --%>
 						</tr>
 						<c:set var="counter" value="${counter + 1}"/>

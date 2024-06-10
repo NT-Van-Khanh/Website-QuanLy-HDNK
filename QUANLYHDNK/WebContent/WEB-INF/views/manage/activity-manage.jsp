@@ -8,12 +8,12 @@
 	<title>Quản lý hoạt động</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 	
-	<link href="<c:url value="/resources/css/manage2.css" />" rel="stylesheet">	
+	<link href="<c:url value="/resources/css/manage.css" />" rel="stylesheet">	
 	<base href = "${pageContext.servletContext.contextPath}/"> 
 </head>
 <body>
 	<header>
-		<label>Hoạt động ngoại khóa</label>
+		<label><a href="manage/account-manage.htm" class="titleWeb">Hoạt động ngoại khóa</a></label>
 		<a id="avatar" href="manage/activity-manage.htm">Avatar</a>
 		<a id="logout" href="login.htm">Đăng xuất</a>
 	</header>
