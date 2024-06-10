@@ -1,5 +1,7 @@
 package qlhdnk.DAO;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,5 +30,12 @@ public class AccountDAO {
 		AccountsEntity account = (AccountsEntity) query.uniqueResult();
 		/* session.close(); */
 		return account;
+	}
+	
+	public List<AccountsEntity> getInfoAcount() {
+		Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<AccountsEntity> list = session.createQuery("FROM AccountsEntity WHERE userId = 'N21DCCN000'").list();
+		return list;
 	}
 }

@@ -23,18 +23,16 @@ GO
 FROM DangKy
 WHERE maTaiKhoan LIKE 'N21DCCN999')
 --**********TOI UU TRUY VAN ******************
-SELECT	HoatDong.*,
-        TaiKhoan.tenTK as tenNguoiDang,
-        LoaiHoatDong.tenLHD as theLoai
-        FROM HoatDong, LoaiHoatDong, TaiKhoan
+
+SELECT	HoatDong.*
+        
+        FROM HoatDong
         WHERE flagHD = 0 
 		AND HoatDong.ngayBD<=GETDATE()
 		AND HoatDong.ngayKT>=GETDATE() 
 		AND maHD NOT IN (SELECT maHoatDong		FROM DangKy
 							WHERE maTaiKhoan LIKE 'N21DCCN999'
 							AND flagDK =0)
-		AND HoatDong.maTheLoai = LoaiHoatDong.maLHD 
-		AND TaiKhoan.maTK=HoatDong.maNguoiDang
 GO--done
 
 --**********TOI UU TRUY VAN ******************

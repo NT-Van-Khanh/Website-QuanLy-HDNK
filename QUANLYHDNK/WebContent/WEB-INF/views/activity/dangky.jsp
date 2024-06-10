@@ -1,12 +1,13 @@
 <%@ page pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="f" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Đã đăng ký</title>
-	<link href="<c:url value="/resources/css/dangky.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/css/dadangky.css" />" rel="stylesheet">
 	<base href = "${pageContext.servletContext.contextPath}/">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 	</head>
@@ -18,7 +19,8 @@
                     <a href="activity/activities.htm">ACTIVITY</a>
                 </div>
                 <div class="header-actions">
-                    <a href="#" class="btntk">Tài khoản</a>
+                	<a href="" class="btntb"><i class="fas fa-bell"></i></a>
+					<a href="activity/account.htm" class="btntk"><i class="fa fa-user"></i></a>
                 </div>
             </div>
         </div>
@@ -37,7 +39,7 @@
 						<a href="activity/thamgia.htm" class="thamgia"><i class="fas fa-thumbs-up"></i> Đã tham gia</a>
 					</li>
 					<li>
-						<a href="" class="logout"><i class="fas fa-sign-out"></i> Đăng xuất</a>
+						<a href="login.htm" class="logout"><i class="fas fa-sign-out"></i> Đăng xuất</a>
 					</li>
 				</ul>
 	    	</div>
@@ -52,34 +54,35 @@
 				    	<select id="hd-filter">
 				        	<option value="all">Tất cả</option>
 				        	<option value="theoten">Theo tên</option>
-				        	<option value="theongay">Theo ngày</option>
 				        </select>
 				</div>
-				        	
-			    
-			    <div class="dshoatdong">
-			    	<div class="tthoatdong">
-			    		<div class="hoatdong">
-						    <div class="khung1">
-					 			<div class="images"><img src="${param.imageUrl}" alt="Activity Image"></div>
-					 		</div>
-						    <div class="dangky"><button class="btnhuydk">Hủy đăng ký</button></div>
-						</div>
-						<div class="chitiet">
-							<div class="p1">
-						        <div class="ten"><h3>${param.title}</h3></div>
-						       	<div class="post">Người đăng: ${param.poster}</div>
-						        <div class="theloai">Thể loại: ${param.category}</div>
-						        <div class="thoigian">Diễn ra từ: ${param.time}</div>
-						        <div class="noidung">${param.content}</div>
-						    </div>
-						    <div class="p2">
-						        <div class="soluong">Số lượng còn lại: ${param.slots}</div>
-						        <div class="timepost">Đăng lúc: ${param.postTime}</div>
-						    </div>
-						</div>
-			    	</div>  	
-				</div>
+				<c:forEach var="r" items = "${registers}">
+					<div class="dshoatdong">
+				    	<div class="tthoatdong">
+				    		<div class="hoatdong">
+							    <div class="khung1">
+						 			<div class="images"><img src="${r.activityRegis.getAvatar()}"></div>
+						 		</div>
+							    <div class="dangky"><button class="btnhuydk">Hủy đăng ký</button></div>
+							</div>
+							<div class="chitiet">
+								<div class="p1">
+							        <div class="ten"><h3>${r.activityRegis.getNameActivity()}</h3></div>
+							       	<div class="post"><b>Người đăng:</b> ${r.activityRegis.getPosterActi().getUserName()}</div>
+							        <div class="theloai"><b>Thể loại:</b> ${r.activityRegis.getTitle().getNameTitle()}</div>
+							        <div class="thoigian"><b>Thời gian đăng ký:</b> ${r.activityRegis.getStartTime()} đến ${r.activityRegis.getEndTime()}</div>
+							        <div class="diadiem"><b>Địa điểm:</b> ${r.activityRegis.getAddress()}</div>
+							        <div class="noidung"><b>Nội dung:</b> ${r.activityRegis.getContentActivity()}</div>
+							    </div>
+							    <div class="p2">
+							        <div class="soluong">Số lượng còn lại: ${r.activityRegis.getQuantity()}</div>
+							        <div class="timepost">Đăng lúc: ${r.activityRegis.getPostTime()}</div>
+							    </div>
+							</div>
+				    	</div>  	
+					</div>
+				</c:forEach>
+				<div class="thongbao"><b>${message}</b></div>
 			</div>    
 		</div>
     </div>

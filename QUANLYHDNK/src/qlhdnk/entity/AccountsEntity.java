@@ -21,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class AccountsEntity {
 
 	@Id
-<<<<<<< HEAD
+
 	@Column(name="maTK")
 	private String userId;
 	
@@ -29,14 +29,7 @@ public class AccountsEntity {
     private String userName;
 	
 	@Column(name="matKhau")
-=======
-	private String userName;
 
-	@Column(name="tenTK")
-    private String name;
-
-	@Column(name="password")
->>>>>>> 2b3c2ce030e7242184a24c97c64e688454a4e0e4
 	private String password;
 
 	@Column(name="gioiTinh")
@@ -64,13 +57,11 @@ public class AccountsEntity {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name="ngaySinh")
     private Date Birthday;
-<<<<<<< HEAD
+
 	
 	@Column(name="anhTK")
-=======
 
-	@Column(name="anh")
->>>>>>> 2b3c2ce030e7242184a24c97c64e688454a4e0e4
+
     private byte[] avatar;
 
 	@Column(name="flagTK")
