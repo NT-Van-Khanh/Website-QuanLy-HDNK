@@ -24,8 +24,6 @@ public class AccountDAO {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	private String idAccount="N21DCCN000";
-	
 	public AccountsEntity login(String id,String password) {
 		Session session = sessionFactory.getCurrentSession();
 		String hql ="FROM AccountsEntity WHERE userId = :id AND password =:pw";
@@ -35,6 +33,7 @@ public class AccountDAO {
 		AccountsEntity account = (AccountsEntity) query.uniqueResult();
 		return account;
 	}
+	
 	public AccountsEntity getAccount(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		String hql ="FROM AccountsEntity WHERE userId = :id";
@@ -43,7 +42,6 @@ public class AccountDAO {
 		AccountsEntity account = (AccountsEntity) query.uniqueResult();
 		return account;
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	public List<AccountsEntity> getListAccount(){
@@ -52,16 +50,6 @@ public class AccountDAO {
 		List<AccountsEntity> accounts = new ArrayList<>();
 		accounts= session.createQuery(hql).list();
 		return accounts;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<AccountsEntity> getInfoAccount() {
-	    Session session = sessionFactory.getCurrentSession();
-	    String hql = "FROM AccountsEntity WHERE userId = :id";
-	    Query query = session.createQuery(hql);
-	    query.setString("id", idAccount);
-	    List<AccountsEntity> list = query.list();
-	    return list;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -95,17 +83,16 @@ public class AccountDAO {
 		return accounts;
 	}
 	
-	
 	public boolean updateAvatar(String id, byte[] byteImage) {
 		Session session =sessionFactory.getCurrentSession();
-		String hql="UPDATE AccountsEntity SET avatar= :image byteImage WHERE userId= :id";
+		String hql="UPDATE AccountsEntity SET avatar= :byteImage WHERE userId= :id";
 		Query query= session.createQuery(hql);
 		query.setString("id", id);
 		query.setParameter("image", byteImage);
 		return query.executeUpdate()>0;
 	}
 	
-	public boolean chekUserEmail(String id, String email) {
+	public boolean chekUserEmail(String id, String email){
 		Session session = sessionFactory.getCurrentSession();
 		String hql ="FROM AccountsEntity WHERE userId = :id AND email =:e";
 		Query query = session.createQuery(hql);
@@ -113,6 +100,18 @@ public class AccountDAO {
 		query.setString("e",email);
 		if((AccountsEntity)query.uniqueResult()!=null) return true;
 		else return false;
-
+	}
+	
+	public boolean changePassword(String userName, String newPassword) {
+		Session session =sessionFactory.getCurrentSession();
+		String hql="UPDATE AccountsEntity SET password= :pw WHERE userId= :id";
+		Query query= session.createQuery(hql);
+		query.setString("id", userName);
+		query.setParameter("pw", newPassword);
+		return query.executeUpdate()>0;
+	}
+	public void insertAccount(AccountsEntity account){
+		Session session =sessionFactory.getCurrentSession();
+		session.save(account);
 	}
 }

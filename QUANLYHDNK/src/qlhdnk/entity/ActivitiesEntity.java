@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 @Entity
@@ -72,6 +73,18 @@ public class ActivitiesEntity {
 	@OneToMany(mappedBy = "activityRegis",fetch = FetchType.EAGER)
 	private Collection<RegistersEntity> registers;
 	
+	@Transient
+	private String pictureBase64;
+	
+	
+	public String getPictureBase64() {
+		return pictureBase64;
+	}
+
+	public void setPictureBase64(String pictureBase64) {
+		this.pictureBase64 = pictureBase64;
+	}
+
 	public ActivitiesEntity(){
 	}
 

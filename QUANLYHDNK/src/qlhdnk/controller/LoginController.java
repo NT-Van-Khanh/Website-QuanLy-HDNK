@@ -1,20 +1,21 @@
 package qlhdnk.controller;
 
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import qlhdnk.entity.AccountsEntity;
+import qlhdnk.entity.VerificationsEntity;
 import qlhdnk.DAO.AccountDAO;
+import qlhdnk.DAO.VerificationCodeDAO;
+import qlhdnk.DAO.XMailler;
 
 @Controller
 @ComponentScan(basePackages ="qlhdnk.DAO")
@@ -24,31 +25,46 @@ public class LoginController {
 	private AccountDAO accountDAO;
 	
 	@Autowired
-	JavaMailSender mailer;
+	private VerificationCodeDAO verificationCodeDAO;
+	
+	@Autowired
+	XMailler mailer;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String getLogin() {
+	public String getLogin(ModelMap model, HttpSession session) {
+		AccountsEntity account =(AccountsEntity)session.getAttribute("account");
+		if(account==null)
 		return "login/login";
+		else{
+			 if(account.getRole().getId().equals("QL")){
+				 return "redirect:/manage/account-manage.htm";
+			 }else if(account.getRole().getId().equals("ND")) {
+				 return "login/login";
+			 }else {
+				 session.setAttribute("account", account);
+				 return "redirect:/activity/activities.htm"; 
+			 } 
+		}
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String signin(ModelMap model,  HttpSession session,
+	public String getLogin(ModelMap model,  HttpSession session,
 		@RequestParam("username") String username, @RequestParam("password") String password) {
 		 AccountsEntity account = accountDAO.login(username, password); 
 		 if(account==null) {
 			model.addAttribute("message","Sai tài khoản mật khẩu!");
 		 	return "login/login";
 		 } else{
+			 session.setAttribute("account", account);
 			 model.addAttribute("message","Đăng nhập thành công!"); 
 			 if(account.getRole().getId().equals("QL")){
-				 System.out.println("ADMIN");
 				 return "redirect:/manage/account-manage.htm";
 			 }else if(account.getRole().getId().equals("ND")) {
-				 System.out.println("ND");
-				 return "redirect:activity/activities.htm";
+				 return "login/login";
 			 }else {
-				 System.out.println("sv");
-				 return "redirect:activity/activities.htm";
+				 session.setAttribute("account", account);
+				 return "redirect:/activity/activities.htm";
+				 
 			 } 
 		 }
 	}
@@ -57,22 +73,25 @@ public class LoginController {
 	public String getForgotPassword() {
 		return "login/forgot-password";
 	}
+	
 	@RequestMapping(value = "forgot-password", method = RequestMethod.POST)
 	public String getForgotPassword(ModelMap model,  HttpSession session,
 			@RequestParam("username") String username, @RequestParam("email") String email) {
 		System.out.println(username);
 		System.out.println(email);
+		
 		if(accountDAO.chekUserEmail(username, email)){
 			model.addAttribute("message","Đúng tài khoản hoặc email!");
+			String verifyCode= XMailler.randomCode();
 			try {
-				MimeMessage mail= mailer.createMimeMessage();
-				MimeMessageHelper helper = new MimeMessageHelper(mail);
-
-				helper.setTo(email);
-				helper.setSubject("Code lấy lại mật khẩu");
-				helper.setText("Test code",true);
-				mailer.send(mail);
+				mailer.send(email,"Code lấy lại mật khẩu" ,"Mã xác nhận của bạn là:"+verifyCode);
+				VerificationsEntity verificationEntity= verificationCodeDAO.checkAvailableEmail(email);
+				if(verificationEntity==null)	verificationCodeDAO.createVerifyCode(email, verifyCode); 
+				else 	verificationCodeDAO.updateVerifyCode(verificationEntity, verifyCode); 
+				session.setAttribute("email", email); 
+				session.setAttribute("username", username); 
 				model.addAttribute("message","Vui lòng kiểm tra email!");
+				return "login/confirm-verification-code";
 			}catch(Exception e) {
 				model.addAttribute("message","Lỗi gửi code qua email!");
 			}
@@ -81,4 +100,53 @@ public class LoginController {
 		}
 		return "login/forgot-password";
 	}
+
+	 @RequestMapping(value = "confirm-verification-code",method = RequestMethod.POST) 
+	 public String verifyCode(ModelMap model, HttpSession session, @RequestParam("code") String code){
+		 String email =(String)session.getAttribute("email");
+		 if(email !=null) {
+			 int tmp =verificationCodeDAO.confirmVerifyCode(email, code);
+			 switch(tmp) {
+			 	case 0:
+			 		model.addAttribute("message","Vui lòng nhập mật khẩu mới");
+			 		return "login/reset-password";
+			 	case 1:
+			 		model.addAttribute("message","Mã code không đúng!");
+			 		return "login/confirm-verification-code";	 
+			 	default:
+			 		 model.addAttribute("message","Mã code hết hạn");
+				 	return "login/confirm-verification-code";	
+		 	 } 	
+		 }else {
+			model.addAttribute("message","Email không tồn tại!");
+		 	return "login/confirm-verification-code";
+		 }
+	 }
+	 
+	 @RequestMapping(value = "reset-password",method = RequestMethod.POST) 
+	 public String resetPassword(ModelMap model, HttpSession session, 
+			 @RequestParam("new-password") String newPassword, 
+			 @RequestParam("confirm-password") String confirmPassword, 
+			 RedirectAttributes redirectAttributes) {
+		    String email = (String) session.getAttribute("email");
+		    String username = (String) session.getAttribute("username");
+
+		    if (email == null || username == null) {
+		        model.addAttribute("message", "Email hoặc tài khoản không tồn tại.");
+		        return "login/forgot-password";
+		    }
+		    if (!newPassword.equals(confirmPassword)) {
+		        model.addAttribute("message", "Mật khẩu xác nhận không khớp!");
+		        return "login/reset-password";
+		    }
+		    if (accountDAO.changePassword(username, newPassword)) {
+		        redirectAttributes.addFlashAttribute("message", "Thành công. Vui lòng đăng nhập!");
+		        session.removeAttribute("email");
+		        session.removeAttribute("username");
+		        return "redirect:/login";
+		    } else {
+		        model.addAttribute("message", "Đổi mật khẩu thất bại. Vui lòng thử lại.");
+		        return "login/reset-password";
+		    }
+	 }
 }

@@ -4,6 +4,8 @@ package qlhdnk.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import qlhdnk.entity.ActivitiesEntity;
 import qlhdnk.entity.NotificationsEntity;
 import qlhdnk.entity.RegistersEntity;
 import qlhdnk.entity.TitlesEntity;
+import qlhdnk.util.Image;
 
 @Controller
 @RequestMapping("/activity/")
@@ -37,14 +40,17 @@ public class ActivityController {
 	@RequestMapping("activities")
 	public String getActivity(ModelMap model) {
 		List<ActivitiesEntity> list = activitiesDAO.getListActivities();
+		for(ActivitiesEntity acti: list) { 
+			 if(acti.getAvatar()!=null) acti.setPictureBase64(Image.encodeToBase64(acti.getAvatar())); 
+		 }
 		List<TitlesEntity> listTitle = titlesDAO.getListTitle();
-		List<AccountsEntity> account = accountDAO.getInfoAccount();
+		AccountsEntity account = accountDAO.getAccount("N21DCCN000");
 //		for(int i = 0; i < listTitle.size();i++) {
 //			System.out.println(listTitle.get(i).getNameTitle());
 //		}
 		model.addAttribute("activities", list);
 		model.addAttribute("titles", listTitle);
-		model.addAttribute("account", account.get(0));
+		model.addAttribute("account", account);
 		if(list.isEmpty()) {
 			model.addAttribute("message", "Hiện chưa có hoạt động nào!");
 		}
@@ -76,11 +82,11 @@ public class ActivityController {
 	
 	@RequestMapping("account")
 	public String getAccount(ModelMap model) {
-		List<AccountsEntity> list = accountDAO.getInfoAccount();
+		AccountsEntity account = accountDAO.getAccount("N21DCCN000");
 //		for(int i = 0; i < list.size();i++) {
 //			System.out.println(list.get(i).getUserName());
 //		}
-		model.addAttribute("account", list.get(0));
+		model.addAttribute("account", account);
 		return "activity/account";
 	}
 	@RequestMapping("thongbao")
@@ -142,4 +148,10 @@ public class ActivityController {
 		registersDAO.cancelRegister(activity, account);;
 		return "redirect:/activity/dangky.htm";
 	}
+	
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login.htm";
+    }
 }

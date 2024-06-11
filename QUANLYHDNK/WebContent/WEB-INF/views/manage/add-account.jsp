@@ -29,37 +29,61 @@
 	</nav>
 		<div class="main">
 		
-		<form class="form-info" action="">
-			<div id="form-info-image">
-				<p><img src="${avartar}" alt="No Image" style="width:auto;"></p>
-				<input type="file" name="avatar" placeholder="Chọn ảnh"> 
-			</div>
-			<div id="form-info-content">	
-				<div id="form-title">Thêm tài khoản</div>
-					<div>
-						<label class="title-of-input">Mã số tài khoản:</label> <input type="text" name="userId" placeholder="Nhập mã tài khoản"> 
-						<label class="title-of-input">Tên tài khoản: </label><input type="text" name="userName" placeholder="Nhập tên tài khoản"> 
-					</div>	
-					<div>	
-						Mật khẩu: <input type="password" name="password" placeholder="Nhập mật khẩu"> 
-						Quyền: <input type="text" name="role" placeholder="Nhập tài khoản">
-					</div>
-					<div>
-						Số điện thoại: <input type="text" name="phoneNumber" placeholder="Nhập số điện thoại"> 
-						Email: <input type="email" name="email" placeholder="Nhập email">
-					</div>
-					<div>
-						Ngày sinh/ngày thành lập: <input type="date" name="birthday" placeholder="Chọn ngày"> 
-						Giới tính:
-							  <input type="radio" name="gender" value="male">Nam
-							  <input type="radio" name="gender" value="female">Nữ
-							  <input type="radio" name="gender" value="another"><label for="another">Khác</label>
-					</div>
-					<div>
-						Địa chỉ : <input type="text" name="userId" placeholder="Nhập địa chỉ"> <br>			
-					</div>
-					<div><button name="bthInsertAccount">Thêm tài khoản</button></div>
-			</div>
+		<form class="form-info" action="manage/add-account.htm" method="post" enctype="multipart/form-data">
+		    <div class="form-title">Thêm tài khoản</div>
+		    <div class="form-frame">
+		        <div class="form-info-image">
+		            <!-- <p><img src="${avartar}" alt="No Image"></p> -->
+		            <!-- <input type="file" name="avatar" placeholder="Chọn ảnh"> -->
+		        </div>
+		        <div class="form-info-font">
+		            <div class="form-info-content">                
+		                <div class="input-field">
+		                    <label>Mã số tài khoản:</label><br>
+		                    <input type="text" name="userId" placeholder="Nhập mã tài khoản">
+		                </div>
+		                <div class="input-field">
+		                    <label>Tên tài khoản:</label><br>
+		                    <input type="text" name="userName" placeholder="Nhập tên tài khoản">
+		                </div>
+		                <div class="input-field">
+		                    <label>Mật khẩu:</label><br>
+		                    <input type="password" name="password" placeholder="Nhập mật khẩu">
+		                </div>
+		                <div class="input-field">
+		                    <label>Quyền:</label><br>
+		                    <select name="role">
+		                        <option value="SV" selected>Sinh viên</option>
+		                        <option value="ND">Người đăng</option>
+		                        <option value="QL">Kỹ thuật</option>
+		                    </select>
+		                </div>
+		                <div class="input-field">
+		                    <label>Số điện thoại:</label><br>
+		                    <input type="text" name="phoneNumber" placeholder="Nhập số điện thoại">
+		                </div>
+		                <div class="input-field">
+		                    <label>Email:</label><br>
+		                    <input type="email" name="email" placeholder="Nhập email">
+		                </div>
+		                <div class="input-field">
+		                    <label>Ngày sinh/ngày thành lập:</label><br>
+		                    <input type="date" name="birthday" placeholder="Chọn ngày">
+		                </div>
+		                <div class="input-field">
+		                    <label>Giới tính:</label><br>
+		                    <input type="radio" name="gender" value="true" checked>Nam
+		                    <input type="radio" name="gender" value="false">Nữ
+		                    <input type="radio" name="gender" value="">Khác
+		                </div>
+		            </div>
+		            <div class="input-field">
+		                <label>Địa chỉ:</label><br>
+		                <input id="AR" type="text" name="address" placeholder="Nhập địa chỉ">
+		            </div>
+		            <button type="submit" name="bthInsertAccount">Thêm tài khoản</button>
+		        </div>
+		    </div>
 		</form>
 		</div>
 </body>

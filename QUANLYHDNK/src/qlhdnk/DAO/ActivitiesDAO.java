@@ -42,6 +42,12 @@ public class ActivitiesDAO {
 		return activitiesId;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<ActivitiesEntity> getActivitiesManage(){
+		Session session = sessionFactory.getCurrentSession();
+		String hql ="FROM ActivitiesEntity";
+		return session.createQuery(hql).list();
+	}
 //	public List<Product> listProducts() {
 //	Session session = sessionFactory.getCurrentSession();
 //	@SuppressWarnings("unchecked")

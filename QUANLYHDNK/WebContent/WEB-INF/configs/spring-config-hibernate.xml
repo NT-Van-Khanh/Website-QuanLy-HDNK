@@ -20,7 +20,7 @@
 			p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 			p:url="jdbc:sqlserver://localhost:1433;Database=QuanLyHDNK" 
 			p:username="sa"
-			p:password="123"> <!-- Lưu ý tên database, tên tài khoản và mk -->
+			p:password="123456"> <!-- Lưu ý tên database, tên tài khoản và mk -->
 	</bean>
 	
 	<!-- Cấu hình Hibernate -->

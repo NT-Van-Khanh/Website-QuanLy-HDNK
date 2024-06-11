@@ -34,7 +34,7 @@ public class AccountsEntity {
 	private String password;
 
 	@Column(name="gioiTinh")
-    private String gender;
+    private Boolean gender;
 
 	@Column(name="email")
     private String email;
@@ -51,7 +51,7 @@ public class AccountsEntity {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="HH:mm dd/MM/yyyy")
-	@Column(name="ngayTao")
+	@Column(name="ngayTao", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createDate;
 
 	@Temporal(TemporalType.DATE)
@@ -117,11 +117,11 @@ public class AccountsEntity {
 		this.password = password;
 	}
 
-	public String getGender() {
+	public Boolean getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(Boolean gender) {
 		this.gender = gender;
 	}
 

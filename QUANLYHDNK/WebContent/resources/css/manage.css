@@ -152,12 +152,17 @@ header #avatar{
 	width: 100%;
 	border-radius: 5px;
 	color:rgb(0, 0, 64);
+	table-layout: fixed;
+
 }
 .table-account th{
 	line-height: 25px;
 	border: 1px solid black;
 	/*padding: 5px;*/
 	background-color:rgb(244, 202, 104);
+	overflow: hidden; /* Đảm bảo phần thừa của tiêu đề cũng bị ẩn */
+    white-space: nowrap; /* Ngăn không cho văn bản xuống dòng */
+    text-overflow: ellipsis; /* Biến văn bản thành dấu ba chấm khi tràn */
 }
 .table-account tr{
 	line-height: 20px;
@@ -172,33 +177,25 @@ header #avatar{
 .table-account td{
 	padding-left: 5px;
 	border: 1px solid black;
+	white-space: nowrap;  /* Ngăn không cho văn bản xuống dòng */
+    overflow: hidden;  /* Ẩn phần văn bản tràn ra ngoài */
+    text-overflow: ellipsis; /* Biến văn bản thành dấu ba chấm khi tràn */
+    max-width: 150px;
+
+
+
+         
 }
+
+/*add-account*/
+
 .form-info{
 	border-radius: 20px;
 	background-color: white;
-	padding: 20px;
-	font-size: 20px;
+	padding: 35px 50px;
 	font-family: sans-serif;
-	
-	display: grid;
-	grid-template-columns: 30% 68%;
-	grid-column-gap: 2%;
 }
-#form-info-image{
-	background-color: rgb(255, 255, 128);
-	padding: 10px;
-}
-#form-info-content{
-	background-color: rgb(255, 0, 255);
-	padding: 10px;
-}
-
-#form-info-content input{
-	width: 230px;
-	height: 25px;
-	border-radius: 5px;
-}
-#form-info-content button{
+.form-info button{
 	width: 150px;
 	height:  30px;
 	border-radius: 5px;
@@ -208,23 +205,73 @@ header #avatar{
 	font-weight: bold;
 	color: rgb(255, 255, 255);
 }
-#form-info-content button:hover{
+.form-info button:hover{
 	cursor: pointer;
 	background-color:  rgb(0, 91, 136);
 }
-.tile-of-input{
-	width: 200px;
-	background-color: rgb(0, 91, 136);
-}
-#form-info-content div{
-	margin-bottom: 10px;
-}
-#form-title{
+.form-title{
 	margin-bottom: 20px;
-	color:rgb(255, 255, 255);
-	text-align: center;
-	font-size: 30px;
+	color:rgb(0, 96, 142);
+	font-size: 35px;
 	font-weight: bold;
 	font-family: sans-serif;
 }
+.form-info-image{
+	background-color: rgb(255, 255, 128);
+	padding: 10px;
+}
+.form-frame{
+	display: grid;
+	grid-template-columns: 30% 68%;
+	grid-column-gap: 2%;
+}
 
+.form-info-content{
+	display: grid;
+	grid-template-columns: 49% 49%;
+	grid-column-gap: 2%;
+}
+.input-field{
+	font-size: 20px;
+	display: block;
+	margin: 10px 0 5px;
+}
+
+.form-info-font input:not([type="radio"]){
+	margin-top: 5px;
+	margin-left: 10px;
+	width: 90%;
+	height: 28px;
+	border-radius: 5px;
+}
+
+.form-info-font input[type="radio"] {
+	margin-top: 5px;
+	margin-left: 20px;
+	margin-right: 5px;
+	height: 15px;
+	font-size: 10px;
+}
+.form-info-font select {
+	border: 2px solid black;
+	margin-top: 5px;
+	margin-left: 10px;
+	width: 90%;
+	height: 28px;
+	border-radius: 5px;
+	
+}
+
+#AR{
+	width: 95%;
+}
+
+input[type="file"] {
+    padding: 5px;
+	height: 20px;
+	border-radius: 5px;
+	border:none;
+/*	background-color: rgb(0, 128, 192);*/
+/*	font-size: 15px;
+	font-weight: bold;*/
+}

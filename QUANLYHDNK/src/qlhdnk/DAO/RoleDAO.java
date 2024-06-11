@@ -2,7 +2,6 @@ package qlhdnk.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +25,9 @@ public class RoleDAO {
 		List<RolesEntity> roles =  new ArrayList<>();
 		roles = session.createQuery(hql).list();
 		return roles;
+	}
+	public RolesEntity getRole(String idRole){
+		Session session = sessionFactory.getCurrentSession();;
+		return (RolesEntity) session.get(RolesEntity.class,idRole);
 	}
 }

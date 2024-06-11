@@ -152,6 +152,7 @@ header #avatar{
 	width: 100%;
 	border-radius: 5px;
 	color:rgb(0, 0, 64);
+	table-layout: fixed;
 
 }
 .table-account th{
@@ -159,6 +160,9 @@ header #avatar{
 	border: 1px solid black;
 	/*padding: 5px;*/
 	background-color:rgb(244, 202, 104);
+	overflow: hidden; /* Đảm bảo phần thừa của tiêu đề cũng bị ẩn */
+    white-space: nowrap; /* Ngăn không cho văn bản xuống dòng */
+    text-overflow: ellipsis; /* Biến văn bản thành dấu ba chấm khi tràn */
 }
 .table-account tr{
 	line-height: 20px;
@@ -173,10 +177,13 @@ header #avatar{
 .table-account td{
 	padding-left: 5px;
 	border: 1px solid black;
-	white-space: nowrap;  /*Ngăn không cho văn bản xuống dòng */
-    overflow: hidden;  /*Ẩn phần văn bản tràn ra ngoài */
-/*    text-overflow: ellipsis;  Biến văn bản thành dấu ba chấm khi tràn */
-            
+	white-space: nowrap;  /* Ngăn không cho văn bản xuống dòng */
+    overflow: hidden;  /* Ẩn phần văn bản tràn ra ngoài */
+    text-overflow: ellipsis; /* Biến văn bản thành dấu ba chấm khi tràn */
+/*    max-width: 150px;*/
+
+    
+           
 }
 
 /*add-account*/

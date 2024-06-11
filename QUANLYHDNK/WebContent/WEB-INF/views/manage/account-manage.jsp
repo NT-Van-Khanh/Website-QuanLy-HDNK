@@ -15,7 +15,7 @@
 	<header>
 		<label><a href="manage/account-manage.htm" class="titleWeb">Hoạt động ngoại khóa</a></label>
 		<a id="avatar" href="manage/activity-manage.htm">Avatar</a>
-		<a id="logout" href="login.htm">Đăng xuất</a>
+		<a id="logout" href="manage/logout.htm">Đăng xuất</a>
 	</header>
  	<nav id="menu"> 
  		<ul>
@@ -40,16 +40,18 @@
 				</div>	
 				<form action="manage/account-manage.htm" method ="post">
 					Lọc: <select name="fill" onchange="this.form.submit()">
-						<option value="ALL">Tất cả</option>
-						<c:forEach var="role" items="${roles}">
+						<option value="ALL" selected="selected">Tất cả</option>
+						<option value="QL">Kỹ thuật viên</option>
+						<option value="ND">Người đăng</option>
+						<option value="SV">Sinh viên</option>
+<%-- 						<c:forEach var="role" items="${roles}">
 							<option value="${role.id}">${role.name}</option>
-						</c:forEach>
+						</c:forEach> --%>
 					</select>
 					Sắp xếp theo: <select name="sort" onchange="this.form.submit()">
-						<option value="id">Mã tài khoản</option>
+						<option value="id" selected="selected">Mã tài khoản</option>
 						<option value="name">Tên tài khoản</option>
 						<option value="create-date">Ngày tạo</option>
-		<!-- 				<option value="3">Mã tài khoản</option> -->
 					</select>
 				</form>
 			</div>
