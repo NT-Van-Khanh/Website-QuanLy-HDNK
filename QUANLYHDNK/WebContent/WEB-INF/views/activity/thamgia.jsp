@@ -18,7 +18,8 @@
                     <a href="activity/activities.htm">ACTIVITY</a>
                 </div>
                 <div class="header-actions">
-                    <a href="#" class="btntk">Tài khoản</a>
+                    <a href="activity/thongbao.htm" class="btntb"><i class="fas fa-bell"></i></a>
+					<a href="activity/account.htm" class="btntk"><i class="fa fa-user"></i></a>
                 </div>
             </div>
         </div>
@@ -37,7 +38,7 @@
 						<a href="activity/thamgia.htm" class="thamgia"><i class="fas fa-thumbs-up"></i> Đã tham gia</a>
 					</li>
 					<li>
-						<a href="" class="logout"><i class="fas fa-sign-out"></i> Đăng xuất</a>
+						<a href="login.htm" class="logout"><i class="fas fa-sign-out"></i> Đăng xuất</a>
 					</li>
 				</ul>
 	    	</div>
@@ -47,76 +48,37 @@
 				<h2>CÁC HOẠT ĐỘNG ĐÃ THAM GIA</h2>
 			</div>
 			<div class="container-item">
-			    <div class="filter-dropdown">
+			    <!-- <div class="filter-dropdown">
 					<label for="hd-filter">Sắp xếp theo:</label>
 				    	<select id="hd-filter">
 				        	<option value="all">Tất cả</option>
 				        	<option value="theoten">Theo tên</option>
-				        	<option value="theongay">Theo ngày</option>
 				        </select>
-				</div>   	
-			    <div class="dshoatdong">
-			    	<div class="tthoatdong">
-			    		<div class="hoatdong">
-						    <div class="khung1">
-					 			<div class="images"><img src="images/ptithcm.png"></div>
-					 		</div>
-						    <div class="btntg">
-						    	<button class="btnthamgia">Đã tham gia</button>
-						    	<span class="tooltip">Bạn đã tham gia</span>
-						    </div>
-						</div>
-						<div class="chitiet">
-							<div class="p1">
-						        <div class="ten"><h3>Chào hè 2024</h3></div>
-						       	<div class="post">Người đăng: Thư ký CLB B1</div>
-						        <div class="theloai">Thể loại: Tình nguyện</div>
-						        <div class="thoigian">Diễn ra từ: 1/7/2024 đến 7/7/2024</div>
-						        <div class="noidung">Phong trào trồng cây xanh, vệ sinh đường phố</div>
-						    </div>
-						</div>
-			    	</div>  
-			    	<div class="tthoatdong">
-			    		<div class="hoatdong">
-						    <div class="khung1">
-					 			<div class="images"><img src="images/ptithcm.png"></div>
-					 		</div>
-						    <div class="btntg">
-						    	<button class="btnthamgia">Đã tham gia</button>
-						    	<span class="tooltip">Bạn đã tham gia</span>
-						    </div>
-						</div>
-						<div class="chitiet">
-							<div class="p1">
-						        <div class="ten"><h3>Chào hè 2024</h3></div>
-						       	<div class="post">Người đăng: Thư ký CLB B1</div>
-						        <div class="theloai">Thể loại: Tình nguyện</div>
-						        <div class="thoigian">Diễn ra từ: 1/7/2024 đến 7/7/2024</div>
-						        <div class="noidung">Phong trào trồng cây xanh, vệ sinh đường phố</div>
-						    </div>
-						</div>
-			    	</div>  
-			    	<div class="tthoatdong">
-			    		<div class="hoatdong">
-						    <div class="khung1">
-					 			<div class="images"><img src="images/ptithcm.png"></div>
-					 		</div>
-						    <div class="btntg">
-						    	<button class="btnthamgia">Đã tham gia</button>
-						    	<span class="tooltip">Bạn đã tham gia</span>
-						    </div>
-						</div>
-						<div class="chitiet">
-							<div class="p1">
-						        <div class="ten"><h3>Chào hè 2024</h3></div>
-						       	<div class="post">Người đăng: Thư ký CLB B1</div>
-						        <div class="theloai">Thể loại: Tình nguyện</div>
-						        <div class="thoigian">Diễn ra từ: 1/7/2024 đến 7/7/2024</div>
-						        <div class="noidung">Phong trào trồng cây xanh, vệ sinh đường phố</div>
-						    </div>
-						</div>
-			    	</div>  	
-				</div>
+				</div>   --> 	
+		 	    <c:forEach var="d" items = "${datg}">
+					<div class="dshoatdong">
+				    	<div class="tthoatdong">
+				    		<div class="hoatdong">
+							    <div class="khung1">
+						 			<div class="images"><img src="${d.activityRegis.getAvatar()}"></div>
+						 		</div>
+							    
+							</div>
+							<div class="chitiet">
+								<div class="p1">
+							        <div class="ten"><h3>${d.activityRegis.getNameActivity()}</h3></div>
+							        <div class="mahoatdong"><b>Mã hoạt động:</b> ${d.activityRegis.getIdActivity()}</div>
+							       	<div class="post"><b>Người đăng:</b> ${d.activityRegis.getPosterActi().getUserName()}</div>
+							        <div class="theloai"><b>Thể loại:</b> ${d.activityRegis.getTitle().getNameTitle()}</div>
+							        <div class="thoigian"><b>Thời gian đăng ký:</b> ${d.activityRegis.getStartTime()} đến ${d.activityRegis.getEndTime()}</div>
+							        <div class="diadiem"><b>Địa điểm:</b> ${d.activityRegis.getAddress()}</div>
+							        <div class="noidung"><b>Nội dung:</b> ${d.activityRegis.getContentActivity()}</div>
+							    </div>
+							</div>
+				    	</div>  	
+					</div>
+				</c:forEach>
+				<div class="thongbao"><b>${message}</b></div>
 			</div>    
 		</div>
     </div>

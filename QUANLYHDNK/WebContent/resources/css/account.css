@@ -36,8 +36,11 @@
     border-radius: 3px;
 }
 
-.header-actions a.btntk, .btntb {
+.header-actions a.btntb,.btntk {
     background-color: #007bff;
+}
+.btntk{
+	background-color: #0080c0;
 }
 .header-actions a:hover{
     background-color: rgb(255, 255, 255);
@@ -78,106 +81,58 @@
 	color: rgb(24, 65, 105);
 }
 
-#menu ul li a.thamgia{
-	background-color: #0080c0;
-}
-
-/*---Main----*/
 
 .container-body .main{
 	position: relative;
     left: 200px;
-    margin: 15px;
+    margin: 20px;
     width: calc(100% - 230px);
 }
 
-/*.container-item {
-    margin-top:1.5rem!important;
-    margin-bottom:1.5rem!important;
-	flex:0 0 auto;
-	width:100%
-}*/
-
-.container-body .main h2 {
-    color: #2c3e50; 
-    font-size: 40px;
-    text-align: center;
-    text-transform: uppercase; 
-    text-shadow: 2px 2px 4px #aaa;
-    margin: 20px;
+.card{
+	position:relative;
+	display:flex;
+	flex-direction:column;
+	min-width:0;
+	word-wrap:break-word;
+	background-color:#fff;
+	background-clip:border-box;
+	border:1px solid rgba(0,0,0,.125);
+	border-radius:.25rem;
 }
 
-/*---Tìm kiếm---*/
-
-.filter-dropdown {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-right: 10px;
-    padding: 15px;
-}
-.filter-dropdown label {
-    font-size: 16px;
-}
-#hd-filter {
-    padding: 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
+.card>hr{
+	margin-right:0;
+	margin-left:0}
+	
+.card>.list-group{
+	border-top:inherit;
+	border-bottom:inherit}
+	
+.card-header{
+	padding:.5rem 1rem;
+	margin-bottom:0;
+	background-color:rgba(0,0,0,.03);
+	border-bottom:1px solid rgba(0,0,0,.125)
 }
 
-/*---Các hoạt động---*/
-.dshoatdong{
-	padding-top: 20px;
+.card-body{
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.tthoatdong{
-	display: flex;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    border: #004080 solid 1px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
-    width: 100%; 
-}
-.btntg {
-    position: relative;
-    display: inline-block;
+	flex:1 1 auto;
+	padding:1rem 1rem
 }
 
-.btnthamgia {
-	margin-top: 13px;
-    cursor: not-allowed; 
-    background-color: #ddd;
-    color: black;
-    border: none; 
-    padding: 10px 25px; /* Khoảng đệm cho nút */
-    border-radius: 5px;
-}
-
-.hoatdong img {
+img {
     width: 100px;
     height: 100px;
     border-radius: 8px;
     object-fit: cover; 
 }
-.chitiet {
-	align-content: center;
-	font-size: 14px;
+.thongtin{
+	padding-left: 30px;
 }
-.p1{
-  	padding-left: 60px;
-}
-
-.thongbao{
-	padding: 20px;
+.anhdd{
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	font-size: 20px;
-	color: #0000a0;
+	text-align: center;
 }

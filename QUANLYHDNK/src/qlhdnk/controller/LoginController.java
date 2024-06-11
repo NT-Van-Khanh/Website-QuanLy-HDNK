@@ -48,7 +48,7 @@ public class LoginController {
 				 return "redirect:activity/activities.htm";
 			 }else {
 				 System.out.println("sv");
-				 return "login/login";
+				 return "redirect:activity/activities.htm";
 			 } 
 		 }
 	}

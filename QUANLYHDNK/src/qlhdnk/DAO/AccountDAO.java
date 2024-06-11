@@ -2,6 +2,7 @@ package qlhdnk.DAO;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,6 +23,9 @@ public class AccountDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	
+	private String idAccount="N21DCCN000";
+	
 	public AccountsEntity login(String id,String password) {
 		Session session = sessionFactory.getCurrentSession();
 		String hql ="FROM AccountsEntity WHERE userId = :id AND password =:pw";
@@ -40,6 +44,7 @@ public class AccountDAO {
 		return account;
 	}
 	
+
 	@SuppressWarnings("unchecked")
 	public List<AccountsEntity> getListAccount(){
 		Session session = sessionFactory.getCurrentSession();
@@ -48,6 +53,17 @@ public class AccountDAO {
 		accounts= session.createQuery(hql).list();
 		return accounts;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<AccountsEntity> getInfoAccount() {
+	    Session session = sessionFactory.getCurrentSession();
+	    String hql = "FROM AccountsEntity WHERE userId = :id";
+	    Query query = session.createQuery(hql);
+	    query.setString("id", idAccount);
+	    List<AccountsEntity> list = query.list();
+	    return list;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<AccountsEntity> fillListAccount(String sortBy,String fillBy){
 		Session session = sessionFactory.getCurrentSession();
@@ -97,5 +113,6 @@ public class AccountDAO {
 		query.setString("e",email);
 		if((AccountsEntity)query.uniqueResult()!=null) return true;
 		else return false;
+
 	}
 }
