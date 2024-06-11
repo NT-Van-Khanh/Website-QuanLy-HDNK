@@ -19,7 +19,7 @@
                     <a href="activity/activities.htm">ACTIVITY</a>
                 </div>
                 <div class="header-actions">
-                	<a href="" class="btntb"><i class="fas fa-bell"></i></a>
+                	<a href="activity/thongbao.htm" class="btntb"><i class="fas fa-bell"></i></a>
 					<a href="activity/account.htm" class="btntk"><i class="fa fa-user"></i></a>
                 </div>
             </div>
@@ -49,36 +49,43 @@
 				<h2>CÁC HOẠT ĐỘNG ĐÃ ĐĂNG KÝ</h2>
 			</div>
 			<div class="container-item">
-			    <div class="filter-dropdown">
+			    <!-- <div class="filter-dropdown">
 					<label for="hd-filter">Sắp xếp theo:</label>
 				    	<select id="hd-filter">
 				        	<option value="all">Tất cả</option>
 				        	<option value="theoten">Theo tên</option>
 				        </select>
-				</div>
+				</div> -->
 				<c:forEach var="r" items = "${registers}">
 					<div class="dshoatdong">
 				    	<div class="tthoatdong">
-				    		<div class="hoatdong">
-							    <div class="khung1">
-						 			<div class="images"><img src="${r.activityRegis.getAvatar()}"></div>
-						 		</div>
-							    <div class="dangky"><button class="btnhuydk">Hủy đăng ký</button></div>
-							</div>
-							<div class="chitiet">
-								<div class="p1">
-							        <div class="ten"><h3>${r.activityRegis.getNameActivity()}</h3></div>
-							       	<div class="post"><b>Người đăng:</b> ${r.activityRegis.getPosterActi().getUserName()}</div>
-							        <div class="theloai"><b>Thể loại:</b> ${r.activityRegis.getTitle().getNameTitle()}</div>
-							        <div class="thoigian"><b>Thời gian đăng ký:</b> ${r.activityRegis.getStartTime()} đến ${r.activityRegis.getEndTime()}</div>
-							        <div class="diadiem"><b>Địa điểm:</b> ${r.activityRegis.getAddress()}</div>
-							        <div class="noidung"><b>Nội dung:</b> ${r.activityRegis.getContentActivity()}</div>
-							    </div>
-							    <div class="p2">
-							        <div class="soluong">Số lượng còn lại: ${r.activityRegis.getQuantity()}</div>
-							        <div class="timepost">Đăng lúc: ${r.activityRegis.getPostTime()}</div>
-							    </div>
-							</div>
+				    		<form action="<c:url value="/activity/cancel.htm"/>" method="POST">
+					    		<div class="hoatdong">
+								    <div class="khung1">
+							 			<div class="images"><img src="${r.activityRegis.getAvatar()}"></div>
+							 		</div>
+								    <div class="dangky">
+									        <input type="hidden" name="idAccount" value="${r.registrant.getUserId()}">
+									        <input type="hidden" name="idActivity" value="${r.activityRegis.getIdActivity()}">
+									        <button type="submit" class="btnhuydk">Hủy đăng ký</button>
+									</div>
+								</div>
+								<div class="chitiet">
+									<div class="p1">
+								        <div class="ten"><h3>${r.activityRegis.getNameActivity()}</h3></div>
+								        <div class="mahoatdong"><b>Mã hoạt động:</b> ${r.activityRegis.getIdActivity()}</div>
+								       	<div class="post"><b>Người đăng:</b> ${r.activityRegis.getPosterActi().getUserName()}</div>
+								        <div class="theloai"><b>Thể loại:</b> ${r.activityRegis.getTitle().getNameTitle()}</div>
+								        <div class="thoigian"><b>Thời gian đăng ký:</b> ${r.activityRegis.getStartTime()} đến ${r.activityRegis.getEndTime()}</div>
+								        <div class="diadiem"><b>Địa điểm:</b> ${r.activityRegis.getAddress()}</div>
+								        <div class="noidung"><b>Nội dung:</b> ${r.activityRegis.getContentActivity()}</div>
+								    </div>
+								    <div class="p2">
+								        <div class="soluong">Số lượng còn lại: ${r.activityRegis.getQuantity()}</div>
+								        <div class="timepost">Đăng lúc: ${r.activityRegis.getPostTime()}</div>
+								    </div>
+								</div>
+							</form>
 				    	</div>  	
 					</div>
 				</c:forEach>

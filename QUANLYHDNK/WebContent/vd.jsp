@@ -20,7 +20,7 @@
 					<a href="activity/activities.htm">ACTIVITY</a>
 				</div>
 				<div class="header-actions">
-					<a href="activity/thongbao.htm" class="btntb"><i class="fas fa-bell"></i></a>
+					<a href="" class="btntb"><i class="fas fa-bell"></i></a>
 					<a href="activity/account.htm" class="btntk"><i class="fa fa-user"></i></a>
 				</div>
 			</div>
@@ -75,8 +75,6 @@
 										</div>
 									</div>
 									<div class="dangky">
-										<input type="hidden" name="idActivity" value="${a.idActivity}" />
-                        				<input type="hidden" name="idAccount" value="${account.userId}" />
 										<button type="submit" class="btndangky ignore-click" ${a.quantity == 0 ? 'disabled' : ''} ${a.quantity == 0 ? 'style="opacity: 0.5; cursor: not-allowed;"' : ''}>Đăng ký</button>
 									</div>
 								</div>

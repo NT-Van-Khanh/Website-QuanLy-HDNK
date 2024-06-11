@@ -18,7 +18,7 @@
                     <a href="activity/activities.htm">ACTIVITY</a>
                 </div>
                 <div class="header-actions">
-                    <a href="" class="btntb"><i class="fas fa-bell"></i></a>
+                    <a href="activity/thongbao.htm" class="btntb"><i class="fas fa-bell"></i></a>
 					<a href="activity/account.htm" class="btntk"><i class="fa fa-user"></i></a>
                 </div>
             </div>
@@ -48,13 +48,13 @@
 				<h2>CÁC HOẠT ĐỘNG ĐÃ THAM GIA</h2>
 			</div>
 			<div class="container-item">
-			    <div class="filter-dropdown">
+			    <!-- <div class="filter-dropdown">
 					<label for="hd-filter">Sắp xếp theo:</label>
 				    	<select id="hd-filter">
 				        	<option value="all">Tất cả</option>
 				        	<option value="theoten">Theo tên</option>
 				        </select>
-				</div>   	
+				</div>   --> 	
 		 	    <c:forEach var="d" items = "${datg}">
 					<div class="dshoatdong">
 				    	<div class="tthoatdong">
@@ -62,11 +62,12 @@
 							    <div class="khung1">
 						 			<div class="images"><img src="${d.activityRegis.getAvatar()}"></div>
 						 		</div>
-							    <div class="btntg"><button class="btnthamgia">Đăng ký</button></div>
+							    
 							</div>
 							<div class="chitiet">
 								<div class="p1">
 							        <div class="ten"><h3>${d.activityRegis.getNameActivity()}</h3></div>
+							        <div class="mahoatdong"><b>Mã hoạt động:</b> ${d.activityRegis.getIdActivity()}</div>
 							       	<div class="post"><b>Người đăng:</b> ${d.activityRegis.getPosterActi().getUserName()}</div>
 							        <div class="theloai"><b>Thể loại:</b> ${d.activityRegis.getTitle().getNameTitle()}</div>
 							        <div class="thoigian"><b>Thời gian đăng ký:</b> ${d.activityRegis.getStartTime()} đến ${d.activityRegis.getEndTime()}</div>

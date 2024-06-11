@@ -77,6 +77,10 @@
 #menu ul li a.dadky{
 	background-color: #0080c0;
 }
+.header-actions a:hover{
+    background-color: rgb(255, 255, 255);
+	color: rgb(24, 65, 105);
+}
 
 /*---Main----*/
 
@@ -156,6 +160,9 @@
 .btnhuydk:hover {
     background-color: #800040;
 }
+.hoatdong {
+  height: 0px;
+}
 .hoatdong img {
     width: 100px;
     height: 100px;
@@ -167,15 +174,16 @@
 	font-size: 14px;
 }
 .p1, .p2 {
-  	padding-left: 60px;
+  	padding-left: 160px;
 }
 
 .p2{
 	display: flex;
 	gap: 30px;
 	align-items: center;
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
+	margin-top:20px;
 }
 .thongbao{
 	padding: 20px;

@@ -1,6 +1,6 @@
 <%@ page pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="f" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,7 @@
 					<a href="activity/activities.htm">ACTIVITY</a>
 				</div>
 				<div class="header-actions">
-					<a href="" class="btntb"><i class="fas fa-bell"></i></a>
+					<a href="activity/thongbao.htm" class="btntb"><i class="fas fa-bell"></i></a>
 					<a href="activity/account.htm" class="btntk"><i class="fa fa-user"></i></a>
 				</div>
 			</div>
@@ -48,14 +48,45 @@
 					<div class="card-header"><h3>Thông tin tài khoản</h3></div>
 					<div class="card-body">
 						<div class="anh">
-							<img src="">
+							<img src="${account.avatar}">
+							<div class="anhdd">Ảnh đại diện</div>
 						</div>
 						<div class="thongtin">
-		                   	<p>Họ tên: <b></b></p>
-		                    <p>Giới tính: <b></b></p>
-		                    <p>Ngày sinh: <b></b></p>
-		                    <p>Số điện thoại: <b></b></p>
-		                    <p>Địa chỉ: <b></b></p>
+							<p>Mã tài khoản: <b>${account.userId}</b></p>
+		                   	<p>Họ tên: <b>${account.userName}</b></p>
+		                    <p>Giới tính: <b>
+		                    	<c:choose>
+						            <c:when test="${account.gender == 1}">
+						                Nam
+						            </c:when>
+						            <c:otherwise>
+						                Nữ
+						            </c:otherwise>
+						        </c:choose>
+		                    </b></p>
+		                    <p>Ngày sinh: <b>
+		                    	${account.birthday}
+		                    </b></p>
+		                    <p>Số điện thoại: <b>${account.phoneNumber}
+		                    	<c:choose>
+						            <c:when test="${account.phoneNumber == null}">
+						                Chưa cập nhật
+						            </c:when>
+						            <c:otherwise>
+						                ${account.address}
+						            </c:otherwise>
+						        </c:choose>
+		                    </b></p>
+		                    <p>Địa chỉ: <b>${account.address}
+		                    	<c:choose>
+						            <c:when test="${account.address == null}">
+						                Chưa cập nhật
+						            </c:when>
+						            <c:otherwise>
+						                ${account.address}
+						            </c:otherwise>
+						        </c:choose>
+		                    </b></p>
 			                
 		                </div>
 					</div>

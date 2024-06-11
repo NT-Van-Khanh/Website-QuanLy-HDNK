@@ -38,6 +38,10 @@
 .header-actions a.btntk, .btntb {
     background-color: #007bff;
 }
+.header-actions a:hover{
+    background-color: rgb(255, 255, 255);
+	color: rgb(24, 65, 105);
+}
 
 /*-----Sider-----*/
 .container-body {
@@ -212,6 +216,7 @@
 }
 .chitiet {
   font-size: 14px;
+  padding-left: 100px;
 }
 .p1, .p2 {
   	padding-left: 60px;
@@ -266,7 +271,7 @@
     text-align: center;
     text-transform: uppercase; 
     text-shadow: 2px 2px 4px #aaa;
-  margin-bottom:40px;
+    margin-bottom:40px;
 }
 
 .modal-body .chitiet {
