@@ -11,9 +11,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 public class Image {
 
-	public static String encodeToBase64(byte[] image) {
-		return Base64.getEncoder().encodeToString(image);
-	}
+    public static String encodeToBase64(byte[] image) {
+        return Base64.getEncoder().encodeToString(image);
+    }
     public static ImageIcon resizeImage( ImageIcon imageIcon,int width,int height ){
         java.awt.Image scaleImage = imageIcon.getImage();
         scaleImage=scaleImage.getScaledInstance(width, height, java.awt.Image.SCALE_REPLICATE );

@@ -2,6 +2,7 @@ package qlhdnk.DAO;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,15 @@ public class TitlesDAO {
 			@SuppressWarnings("unchecked")
 			List<TitlesEntity> list = session.createQuery("FROM TitlesEntity ORDER BY idTitle ASC").list();
 			return list;
+		}
+		
+		public TitlesEntity getTitle(String id){
+			Session session = sessionFactory.getCurrentSession();
+			String hql ="FROM TitlesEntity WHERE idTitle = :id";
+			Query query = session.createQuery(hql);
+			query.setString("id", id);
+			TitlesEntity title = (TitlesEntity) query.uniqueResult();
+			return title;
+
 		}
 }

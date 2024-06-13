@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class RegistersEntity {
 	@Id
 	@GeneratedValue
-	@Column(name="maDK")
+	@Column(name="maDK", nullable = false)
 	private int idRegister;
 	
 	@ManyToOne
@@ -32,10 +32,10 @@ public class RegistersEntity {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="HH:mm:ss dd/MM/yyyy")
-	@Column(name="thoiGian")
+	@Column(name="thoiGian", nullable = false)
 	private Date timeRegister;
 
-	@Column(name="flagDK")
+	@Column(name="flagDK", nullable = false)
 	private boolean flagDK;
 
 	public RegistersEntity() {

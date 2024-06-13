@@ -14,13 +14,13 @@ import javax.persistence.Table;
 public class RolesEntity {
 	
 	@Id
-	@Column(name="maVT")
+	@Column(name="maVT", nullable = false)
 	private String id;
 	
-	@Column(name="tenVT")
+	@Column(name="tenVT", nullable = false)
 	private String name;
 	
-	@Column(name="flagVT")
+	@Column(name="flagVT", nullable = false)
 	private boolean flagVT;
 
 	@OneToMany(mappedBy="role", fetch=FetchType.EAGER)

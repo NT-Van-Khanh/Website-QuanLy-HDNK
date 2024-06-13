@@ -22,24 +22,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class AccountsEntity {
 
 	@Id
-
-	@Column(name="maTK")
+	@Column(name="maTK", nullable = false)
 	private String userId;
 	
-	@Column(name="tenTK")
+	@Column(name="tenTK", nullable = false)
     private String userName;
 	
-	@Column(name="matKhau")
+	@Column(name="matKhau", nullable = false)
 
 	private String password;
 
 	@Column(name="gioiTinh")
     private Boolean gender;
 
-	@Column(name="email")
+	@Column(name="email", nullable = false)
     private String email;
 
-	@Column(name="sdt")
+	@Column(name="sdt", nullable = false)
     private String phoneNumber;
 
 	@Column(name="diaChi")
@@ -56,7 +55,7 @@ public class AccountsEntity {
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
-	@Column(name="ngaySinh")
+	@Column(name="ngaySinh", nullable = false)
 
     private Date Birthday;
 
@@ -66,7 +65,7 @@ public class AccountsEntity {
 
     private byte[] avatar;
 
-	@Column(name="flagTK")
+	@Column(name="flagTK", nullable = false)
 	private boolean flagTK;
 
 

@@ -13,13 +13,13 @@ import javax.persistence.Table;
 @Table(name="LoaiHoatDong")
 public class TitlesEntity {
 	@Id
-	@Column(name="maLHD")
+	@Column(name="maLHD", nullable = false)
 	private String idTitle;
 	
-	@Column(name="tenLHD")
+	@Column(name="tenLHD", nullable = false)
 	private String nameTitle;
 	
-	@Column(name="flagLHD")
+	@Column(name="flagLHD", nullable = false)
 	private boolean flagLHD;
 
 	@OneToMany(mappedBy="title", fetch=FetchType.EAGER)

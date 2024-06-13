@@ -44,10 +44,8 @@
 						<option value="QL">Kỹ thuật viên</option>
 						<option value="ND">Người đăng</option>
 						<option value="SV">Sinh viên</option>
-<%-- 						<c:forEach var="role" items="${roles}">
-							<option value="${role.id}">${role.name}</option>
-						</c:forEach> --%>
 					</select>
+					
 					Sắp xếp theo: <select name="sort" onchange="this.form.submit()">
 						<option value="id" selected="selected">Mã tài khoản</option>
 						<option value="name">Tên tài khoản</option>
@@ -71,7 +69,7 @@
 				</tr>
 				<c:set var="counter" value="1" />
 				<c:forEach var="acc" items ="${accounts}">
-						<tr>
+						<tr onclick="window.location.href='manage/account-detail.htm?id=${acc.userId}'">
 							<td>${counter}</td>
 							<td>${acc.userId}</td>
 							<td>${acc.userName}</td>

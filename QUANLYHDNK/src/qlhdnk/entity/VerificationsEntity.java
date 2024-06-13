@@ -13,15 +13,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="MaXacNhan")
 public class VerificationsEntity {
 	@Id
-	@Column(name="email")
+	@Column(name="email", nullable = false)
 	private String email;
 	
-	@Column(name="codeXacNhan")
+	@Column(name="codeXacNhan", nullable = false)
 	private String vertificationCode;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="HH:mm:ss dd-MM-yyyy")
-	@Column(name="thoiHan")
+	@Column(name="thoiHan", nullable = false)
 	private Date expiryTime;
 
 	public String getEmail() {

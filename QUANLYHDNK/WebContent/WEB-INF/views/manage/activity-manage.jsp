@@ -34,17 +34,13 @@
 					<input type="text" name="search" placeholder="Tìm kiếm">
 					<button class="btnSearch-form" name="btnSearch"> <i class="fa fa-search" style="font-size:18px"></i> </button>
 				</div>	
-				<form action="manage/account-manage.htm" method ="post">
-<!-- 					Lọc: <select name="fill" onchange="this.form.submit()">
-						<option value="ALL" selected="selected">Tất cả</option>
-						<option value="QL">Kỹ thuật viên</option>
-						<option value="ND">Người đăng</option>
-						<option value="SV">Sinh viên</option>
-					</select> -->
-					Sắp xếp theo: <select name="sort" onchange="this.form.submit()">
-						<option value="id" selected="selected">Mã tài khoản</option>
-						<option value="name">Tên tài khoản</option>
-						<option value="create-date">Ngày tạo</option>
+				<form action="manage/activity-manage.htm" method ="post">
+					Sắp xếp theo: <select name="sort-activities" onchange="this.form.submit()">
+						<option value="id" selected="selected">Mã hoạt động</option>
+						<option value="name">Tên hoạt động</option>
+						<option value="create-date">Ngày đăng</option>
+						<option value="start-date">Ngày bắt đầu</option>
+						<option value="end-date">Ngày kết thúc</option>
 					</select>
 				</form>
 			</div>
@@ -65,6 +61,7 @@
 				</tr>
  				<c:set var="counter" value="1" />
 				<c:forEach var="acti" items ="${activities}">
+					<%-- <tr onclick="window.location.href='manage/activity-detail.htm?id=${acti.idActivity}'"> --%>
 						<tr>
 							<td>${counter}</td>
 							<td>${acti.idActivity}</td>

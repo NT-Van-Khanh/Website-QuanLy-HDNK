@@ -1,24 +1,24 @@
 <%@ page pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<title>Đăng nhập</title>
-	<link rel ="styesheet" type= "text/css" href="/resources/css/login.css">
+	<link href="<c:url value="/resources/css/login2.css" />" rel="stylesheet">
 </head>
 <body>
-	<h1> Welcome to Spring MVC </h1>
-
-	<div class="login">
-	 	<h2>Login</h2>
-	 	<input type="text" name= "username">
-	 	<br>
-	 	<input type="password" name= "password">
-	 	<br>
+	<h1 class="schoolName"> Welcome to PTIT HCM </h1>
+	<h2 class="webName"> Hoạt động ngoại khóa</h2>
+	<form action="login.htm" method ="post" enctype="multipart/form-data" class="login-form" >
+	 	<p class="tilte">Login</p>
+	 	<p class="text-name">Tài khoản</p> 
+	 	<input type="text" name= "username" placeholder="Nhập tài khoản"> <br>
+	 	<p class="text-name">Mật khẩu</p>  
+	 	<input type="password" name= "password" placeholder="Nhập mật khẩu"> <br>
+	 	<p class="error">${message}</p>
 	 	<button name="SignIn">Đăng nhập</button>
-
-	 	<h1> có thể test giao diện ở file index.jsp </h1>
-	</div>
-	
+	 	<br>
+	 	<a href="login/forgot-password.htm" class="forgotPassword">Quên mật khẩu?</a>
+	</form>	
 </body>
-</html>

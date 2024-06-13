@@ -20,18 +20,18 @@ public class NotificationsEntity {
 
 		@Id
 		@GeneratedValue
-		@Column(name="maTB")
+		@Column(name="maTB", nullable = false)
 		private int idNotifi;
 		
-		@Column(name="tieuDe")
+		@Column(name="tieuDe", nullable = false)
 		private String nameNotifi;
 		
-		@Column(name="noiDung")
+		@Column(name="noiDung", nullable = false)
 		private String content;
 		
 		@Temporal(TemporalType.TIMESTAMP)
 		@DateTimeFormat(pattern="HH:mm:ss dd/MM/yyyy")
-		@Column(name="thoiGian")
+		@Column(name="thoiGian", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 		private Date timePost;
 		
 		@ManyToOne
@@ -42,7 +42,7 @@ public class NotificationsEntity {
 		@JoinColumn(name="maNguoiDang")
 		private AccountsEntity posterNotifi;
 		
-		@Column(name="flagTB")
+		@Column(name="flagTB", nullable = false)
 		private boolean flagTB;
 
 		public NotificationsEntity() {

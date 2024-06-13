@@ -2,7 +2,12 @@ create database QuanLyHDNK
 go
 use [QuanLyHDNK]
 go
-
+CREATE TABLE MaXacNhan(
+    email NVARCHAR(50) PRIMARY KEY NOT NULL,
+    codeXacNhan VARCHAR(200) NOT NULL,
+    thoiHan DATETIME NOT NULL DEFAULT GETDATE()
+);
+go
 create table VaiTro(
 	maVT nvarchar(2) primary key not null,
 	tenVT nvarchar(50) not null,

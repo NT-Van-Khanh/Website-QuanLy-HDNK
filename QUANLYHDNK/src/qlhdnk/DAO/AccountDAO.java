@@ -1,4 +1,5 @@
 package qlhdnk.DAO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import qlhdnk.DAO.AccountDAO;
 import qlhdnk.entity.AccountsEntity;
+
 import qlhdnk.util.SHA256Encryption;
 
 @Transactional
@@ -107,11 +109,17 @@ public class AccountDAO {
 		String hql="UPDATE AccountsEntity SET password= :pw WHERE userId= :id";
 		Query query= session.createQuery(hql);
 		query.setString("id", userName);
-		query.setParameter("pw", newPassword);
+		query.setParameter("pw", SHA256Encryption.toSHA256(newPassword));
 		return query.executeUpdate()>0;
 	}
+	
 	public void insertAccount(AccountsEntity account){
 		Session session =sessionFactory.getCurrentSession();
 		session.save(account);
+	}
+	
+	public void updateAccount(AccountsEntity newAccount){
+		Session session = sessionFactory.getCurrentSession();
+		session.update(newAccount);
 	}
 }

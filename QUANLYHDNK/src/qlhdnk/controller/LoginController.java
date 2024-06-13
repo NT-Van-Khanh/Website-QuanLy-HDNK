@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import qlhdnk.entity.AccountsEntity;
 import qlhdnk.entity.VerificationsEntity;
+import qlhdnk.util.SHA256Encryption;
 import qlhdnk.DAO.AccountDAO;
 import qlhdnk.DAO.VerificationCodeDAO;
 import qlhdnk.DAO.XMailler;
@@ -33,13 +34,13 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getLogin(ModelMap model, HttpSession session) {
 		AccountsEntity account =(AccountsEntity)session.getAttribute("account");
-		if(account==null)
-		return "login/login";
-		else{
+		if(account==null) {
+			return "login/login";
+		}else{
 			 if(account.getRole().getId().equals("QL")){
 				 return "redirect:/manage/account-manage.htm";
 			 }else if(account.getRole().getId().equals("ND")) {
-				 return "login/login";
+				 return "redirect:/nguoidang/dangdienra.htm";
 			 }else {
 				 session.setAttribute("account", account);
 				 return "redirect:/activity/activities.htm"; 
@@ -60,7 +61,7 @@ public class LoginController {
 			 if(account.getRole().getId().equals("QL")){
 				 return "redirect:/manage/account-manage.htm";
 			 }else if(account.getRole().getId().equals("ND")) {
-				 return "login/login";
+				 return "redirect:/nguoidang/dangdienra.htm";
 			 }else {
 				 session.setAttribute("account", account);
 				 return "redirect:/activity/activities.htm";
@@ -70,8 +71,20 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "forgot-password", method = RequestMethod.GET)
-	public String getForgotPassword() {
-		return "login/forgot-password";
+	public String getForgotPassword(ModelMap model, HttpSession session) {
+		AccountsEntity account =(AccountsEntity)session.getAttribute("account");
+		if(account==null) {
+			return "login/forgot-password";
+		}else{
+			 if(account.getRole().getId().equals("QL")){
+				 return "redirect:/manage/account-manage.htm";
+			 }else if(account.getRole().getId().equals("ND")) {
+				 return "redirect:/nguoidang/dangdienra.htm";
+			 }else {
+				 session.setAttribute("account", account);
+				 return "redirect:/activity/activities.htm"; 
+			 } 
+		}
 	}
 	
 	@RequestMapping(value = "forgot-password", method = RequestMethod.POST)
@@ -86,8 +99,8 @@ public class LoginController {
 			try {
 				mailer.send(email,"Code lấy lại mật khẩu" ,"Mã xác nhận của bạn là:"+verifyCode);
 				VerificationsEntity verificationEntity= verificationCodeDAO.checkAvailableEmail(email);
-				if(verificationEntity==null)	verificationCodeDAO.createVerifyCode(email, verifyCode); 
-				else 	verificationCodeDAO.updateVerifyCode(verificationEntity, verifyCode); 
+				if(verificationEntity==null)	verificationCodeDAO.createVerifyCode(email,SHA256Encryption.toSHA256(verifyCode)); 
+				else 	verificationCodeDAO.updateVerifyCode(verificationEntity, SHA256Encryption.toSHA256(verifyCode)); 
 				session.setAttribute("email", email); 
 				session.setAttribute("username", username); 
 				model.addAttribute("message","Vui lòng kiểm tra email!");
@@ -105,7 +118,7 @@ public class LoginController {
 	 public String verifyCode(ModelMap model, HttpSession session, @RequestParam("code") String code){
 		 String email =(String)session.getAttribute("email");
 		 if(email !=null) {
-			 int tmp =verificationCodeDAO.confirmVerifyCode(email, code);
+			 int tmp =verificationCodeDAO.confirmVerifyCode(email, SHA256Encryption.toSHA256(code));
 			 switch(tmp) {
 			 	case 0:
 			 		model.addAttribute("message","Vui lòng nhập mật khẩu mới");
@@ -143,7 +156,7 @@ public class LoginController {
 		        redirectAttributes.addFlashAttribute("message", "Thành công. Vui lòng đăng nhập!");
 		        session.removeAttribute("email");
 		        session.removeAttribute("username");
-		        return "redirect:/login";
+		        return "redirect:/login.htm";
 		    } else {
 		        model.addAttribute("message", "Đổi mật khẩu thất bại. Vui lòng thử lại.");
 		        return "login/reset-password";

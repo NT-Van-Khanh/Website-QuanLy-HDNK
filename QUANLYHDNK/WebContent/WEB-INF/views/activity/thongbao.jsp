@@ -36,7 +36,7 @@
 							class="fas fa-check-square"></i> Đã đăng ký</a></li>
 					<li><a href="activity/thamgia.htm" class="thamgia"><i
 							class="fas fa-thumbs-up"></i> Đã tham gia</a></li>
-					<li><a href="login.htm" class="logout"><i class="fas fa-sign-out"></i>
+					<li><a href="activity/logout.htm" class="logout"><i class="fas fa-sign-out"></i>
 							Đăng xuất</a></li>
 				</ul>
 			</div>

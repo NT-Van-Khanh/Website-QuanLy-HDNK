@@ -1,5 +1,6 @@
 package qlhdnk.DAO;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -21,10 +22,9 @@ public class RegistersDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	private String idAccount="N21DCCN000";
-	
+
 	@SuppressWarnings("unchecked")
-	public List<RegistersEntity> getListRegisters(){
+	public List<RegistersEntity> getListRegisters(String idAccount){
 		Session session = sessionFactory.getCurrentSession();
 		String hql="FROM RegistersEntity where flagDK = 0 and registrant=:id ORDER BY idRegister ASC";
 		Query query = session.createQuery(hql);
@@ -33,7 +33,7 @@ public class RegistersDAO {
 		return list;
 	}
     @SuppressWarnings("unchecked")
-	public List<RegistersEntity> getListDaTG() {
+	public List<RegistersEntity> getListDaTG(String idAccount) {
 	    Session session = sessionFactory.getCurrentSession();
 	    String hql="SELECT re FROM RegistersEntity re "
 	            + "JOIN FETCH re.activityRegis a "
@@ -50,27 +50,27 @@ public class RegistersDAO {
 	    return list;
 	}
 	
-    @SuppressWarnings("unchecked")
-    public List<RegistersEntity> getListByActivity(int activityId){
+    public long getListByActivity(int activityId){
     	Session session = sessionFactory.getCurrentSession();
-    	String hql = "FROM RegistersEntity WHERE activityRegis.idActivity = :activityId";
+    	String hql = "SELECT COUNT(*) FROM RegistersEntity WHERE activityRegis.idActivity = :activityId AND FlagDK =false ";
     	Query query = session.createQuery(hql);
     	query.setInteger("activityId", activityId);
-    	List<RegistersEntity> list = query.list();
-    	return list;
+    	long count = (long) query.uniqueResult();
+    	return count;
     }    
-    public RegistersEntity getRegister(int idActivity, String idAccount) {
+    
+    public RegistersEntity getRegister(ActivitiesEntity activity, AccountsEntity account) {
     	Session session = sessionFactory.getCurrentSession();
-        String hql = "FROM RegistersEntity WHERE registrant = :idAccount AND activityRegis = :idActivity AND flagDK = false";
+        String hql = "FROM RegistersEntity WHERE registrant = :idAccount AND activityRegis = :idActivity AND flagDK = true";
         Query query = session.createQuery(hql);
-        query.setParameter("idAccount", idAccount);
-        query.setParameter("idActivity", idActivity);
+        query.setParameter("idAccount", account);
+        query.setParameter("idActivity", activity);
         return (RegistersEntity) query.uniqueResult();
     }
     
     public boolean checkRegister(ActivitiesEntity activity, AccountsEntity account){
         Session session = sessionFactory.getCurrentSession();
-        String hql = "FROM RegistersEntity WHERE registrant = :account AND activityRegis = :activity AND flagDK = 1";
+        String hql = "FROM RegistersEntity WHERE registrant = :account AND activityRegis = :activity AND flagDK = true";
         Query query = session.createQuery(hql);
         query.setParameter("account", account);
         query.setParameter("activity", activity);
@@ -79,17 +79,19 @@ public class RegistersDAO {
 
     public void updateRegister(RegistersEntity register){
         Session session = sessionFactory.getCurrentSession();
-//        session.evict(register);
-//        register.setFlagDK(false);
-//        register.setTimeRegister(new Date());
-        session.update(session);
+        session.evict(register);
+        register.setFlagDK(false);
+        register.setTimeRegister(new Date());
+        session.update(register);
     }
 
-    public void insertRegister(RegistersEntity register){
+    public void insertRegister(ActivitiesEntity activity, AccountsEntity account){
         Session session = sessionFactory.getCurrentSession();
-//        RegistersEntity registerEntity = new RegistersEntity();
-//        registerEntity.setActivityRegis(activity);
-//        registerEntity.setRegistrant(account);
+        RegistersEntity register = new RegistersEntity();
+        register.setActivityRegis(activity);
+        register.setRegistrant(account);
+        register.setFlagDK(false);
+        register.setTimeRegister(new Date());
         session.save(register);
     }
     
@@ -105,5 +107,6 @@ public class RegistersDAO {
             session.update(register);
         }
     }
-
+	
 }
+

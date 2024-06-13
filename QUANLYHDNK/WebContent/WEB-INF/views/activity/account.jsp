@@ -44,53 +44,47 @@
 		<div class="main">
 			<div class="container-item">
 				<h2 style="color: #0000a0;display: flex;justify-content: center; align-items: center;padding-bottom: 20px;">Trang tổng quát thông tin tài khoản</h2>
-				<div class="card">
-					<div class="card-header"><h3>Thông tin tài khoản</h3></div>
-					<div class="card-body">
-						<div class="anh">
-							<img src="${account.avatar}">
-							<div class="anhdd">Ảnh đại diện</div>
-						</div>
-						<div class="thongtin">
-							<p>Mã tài khoản: <b>${account.userId}</b></p>
-		                   	<p>Họ tên: <b>${account.userName}</b></p>
-		                    <p>Giới tính: <b>
-		                    	<c:choose>
-						            <c:when test="${account.gender == 1}">
-						                Nam
-						            </c:when>
-						            <c:otherwise>
-						                Nữ
-						            </c:otherwise>
-						        </c:choose>
-		                    </b></p>
-		                    <p>Ngày sinh: <b>
-		                    	${account.birthday}
-		                    </b></p>
-		                    <p>Số điện thoại: <b>${account.phoneNumber}
-		                    	<c:choose>
-						            <c:when test="${account.phoneNumber == null}">
-						                Chưa cập nhật
-						            </c:when>
-						            <c:otherwise>
-						                ${account.address}
-						            </c:otherwise>
-						        </c:choose>
-		                    </b></p>
-		                    <p>Địa chỉ: <b>${account.address}
-		                    	<c:choose>
-						            <c:when test="${account.address == null}">
-						                Chưa cập nhật
-						            </c:when>
-						            <c:otherwise>
-						                ${account.address}
-						            </c:otherwise>
-						        </c:choose>
-		                    </b></p>
-			                
-		                </div>
-					</div>
-				</div>			
+				<div class="form-frame">
+			        <div class="form-info-image">
+			            <!-- <p><img src="${avartar}" alt="No Image"></p> -->
+			            <!-- <input type="file" name="avatar" placeholder="Chọn ảnh"> -->
+			        </div>
+			        <div class="form-info-font">
+			            <div class="form-info-content">                
+			                <div class="input-field">
+			                    <div>Mã tài khoản: <b>${account.userId}</b> </div> <br>
+			                </div>
+			                <div class="input-field">
+			                    <div>Tên tài khoản: <b>${account.userName}</b> </div> <br>
+			                </div>
+			                <div class="input-field">
+			                    <div>Số điện thoại: <b>${account.phoneNumber}</b> </div> <br>
+			                </div>
+			                <div class="input-field">
+			                    <div>Email: <b>${account.email}</b> </div><br>
+			                </div>
+			                <div class="input-field">
+			                    <label>Ngày sinh: <b>${account.birthday}</b> </label><br>
+			                </div>
+			                <br>
+			                <div class="input-field">
+			                    <div>Giới tính: <b>
+				                    <c:choose>
+								        <c:when test="${account.gender == true}">
+								            Nam
+								        </c:when>
+								        <c:otherwise>
+								            Nữ
+								        </c:otherwise>
+								    </c:choose> </b>
+								</div><br>
+			                </div>
+			            </div>
+			            <div class="input-field">
+			                <div>Địa chỉ: <b>${account.address}</b> </div><br>
+			            </div>
+			        </div>
+			    </div>			
 			</div>
 		</div>
 	</div>

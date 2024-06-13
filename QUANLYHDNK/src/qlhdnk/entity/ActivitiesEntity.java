@@ -23,32 +23,32 @@ public class ActivitiesEntity {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="maHD")
+	@Column(name="maHD", nullable = false)
 	private int idActivity;
 	
-	@Column(name="tenHD")
+	@Column(name="tenHD", nullable = false)
 	private String nameActivity;
 	
-	@Column(name="noiDung")
+	@Column(name="noiDung", nullable = false)
 	private String contentActivity;
 	
 	@ManyToOne
-	@JoinColumn(name="maTheLoai")
+	@JoinColumn(name="maTheLoai", nullable = false)
 	private TitlesEntity title;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="HH:mm dd/MM/yyyy")
-	@Column(name="ngayDang")
+	@Column(name="ngayDang", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date postTime;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="HH:mm dd/MM/yyyy")
-	@Column(name="ngayBD")
+	@Column(name="ngayBD", nullable = false)
 	private Date startTime;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="HH:mm dd/MM/yyyy")
-	@Column(name="ngayKT")
+	@Column(name="ngayKT", nullable = false)
 	private Date endTime;
 
 	@Column(name="soLuongDK",nullable = true)
@@ -64,10 +64,10 @@ public class ActivitiesEntity {
 	@JoinColumn(name="maNguoiDang")
 	private AccountsEntity posterActi;
 	
-	@Column(name="flagHD")
+	@Column(name="flagHD", nullable = false)
 	private boolean flagHD;
 	
-	@OneToMany(mappedBy = "activityNotifi",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "activityNotifi",fetch = FetchType.EAGER )
 	private Collection<NotificationsEntity> notifications;
 	
 	@OneToMany(mappedBy = "activityRegis",fetch = FetchType.EAGER)
@@ -76,7 +76,18 @@ public class ActivitiesEntity {
 	@Transient
 	private String pictureBase64;
 	
+	@Transient
+	private long quantityAvailable;
 	
+	
+	public long getQuantityAvailable() {
+		return quantityAvailable;
+	}
+
+	public void setQuantityAvailable(long quantityAvailable) {
+		this.quantityAvailable = quantityAvailable;
+	}
+
 	public String getPictureBase64() {
 		return pictureBase64;
 	}

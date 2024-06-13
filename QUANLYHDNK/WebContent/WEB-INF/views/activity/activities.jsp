@@ -77,7 +77,7 @@
 									<div class="dangky">
 										<input type="hidden" name="idActivity" value="${a.idActivity}" />
                         				<input type="hidden" name="idAccount" value="${account.userId}" />
-										<button type="submit" class="btndangky ignore-click" ${a.quantity == 0 ? 'disabled' : ''} ${a.quantity == 0 ? 'style="opacity: 0.5; cursor: not-allowed;"' : ''}>Đăng ký</button>
+										<button type="submit" class="btndangky ignore-click" ${a.quantity == null || a.quantity == 0 ? 'disabled' : ''} ${a.quantity == 0 ? 'style="opacity: 0.5; cursor: not-allowed;"' : ''}>Đăng ký</button>
 									</div>
 								</div>
 								<div class="chitiet">
@@ -93,7 +93,7 @@
 										<div class="noidung"><b>Nội dung:</b> ${a.contentActivity}</div>
 									</div>
 									<div class="p2">
-										<div class="soluong"><b>Số lượng còn lại:</b> ${a.quantity}</div>
+										<div class="soluong"><b>Số lượng còn lại:</b> ${a.quantityAvailable}/${a.quantity}</div>
 										<div class="timepost"><b>Đăng lúc:</b> ${a.postTime}</div>
 									</div>
 								</div>

@@ -33,22 +33,26 @@
 		    <div class="form-title">Thêm tài khoản</div>
 		    <div class="form-frame">
 		        <div class="form-info-image">
+		        	<img id="blah" alt="your image" width=350px height=350px style="display:none;"/>
+                    <input type="file" name="avatar" 
+                        onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0]); 
+                        		document.getElementById('blah').style.display = 'block';">
 		            <!-- <p><img src="${avartar}" alt="No Image"></p> -->
-		            <!-- <input type="file" name="avatar" placeholder="Chọn ảnh"> -->
+<!-- 		            <input type="file" name="avatar" placeholder="Chọn ảnh" onchange="loadFile(event)">  -->
 		        </div>
 		        <div class="form-info-font">
 		            <div class="form-info-content">                
 		                <div class="input-field">
 		                    <label>Mã số tài khoản:</label><br>
-		                    <input type="text" name="userId" placeholder="Nhập mã tài khoản">
+		                    <input type="text" name="userId" placeholder="Nhập mã tài khoản"  required>
 		                </div>
 		                <div class="input-field">
 		                    <label>Tên tài khoản:</label><br>
-		                    <input type="text" name="userName" placeholder="Nhập tên tài khoản">
+		                    <input type="text" name="userName" placeholder="Nhập tên tài khoản"  required>
 		                </div>
 		                <div class="input-field">
 		                    <label>Mật khẩu:</label><br>
-		                    <input type="password" name="password" placeholder="Nhập mật khẩu">
+		                    <input type="password" name="password" placeholder="Nhập mật khẩu"  required>
 		                </div>
 		                <div class="input-field">
 		                    <label>Quyền:</label><br>
@@ -60,15 +64,15 @@
 		                </div>
 		                <div class="input-field">
 		                    <label>Số điện thoại:</label><br>
-		                    <input type="text" name="phoneNumber" placeholder="Nhập số điện thoại">
+		                    <input type="text" name="phoneNumber" placeholder="Nhập số điện thoại"  required>
 		                </div>
 		                <div class="input-field">
 		                    <label>Email:</label><br>
-		                    <input type="email" name="email" placeholder="Nhập email">
+		                    <input type="email" name="email" placeholder="Nhập email"  required>
 		                </div>
 		                <div class="input-field">
 		                    <label>Ngày sinh/ngày thành lập:</label><br>
-		                    <input type="date" name="birthday" placeholder="Chọn ngày">
+		                    <input type="date" name="birthday" placeholder="Chọn ngày"  required>
 		                </div>
 		                <div class="input-field">
 		                    <label>Giới tính:</label><br>
@@ -81,10 +85,25 @@
 		                <label>Địa chỉ:</label><br>
 		                <input id="AR" type="text" name="address" placeholder="Nhập địa chỉ">
 		            </div>
-		            <button type="submit" name="bthInsertAccount">Thêm tài khoản</button>
+		            <button type="submit" name="bthInsertAccount">Thêm tài khoản</button> 
 		        </div>
 		    </div>
+		    ${message}
 		</form>
-		</div>
+	</div>
+    <script>
+        document.getElementById('avatarInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>	
 </body>
 </html>
